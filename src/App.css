@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  .separate-background {
+    background: linear-gradient(to bottom, #00f 50%, #0f0 50%); /* Warna latar belakang berbeda */
+  }
