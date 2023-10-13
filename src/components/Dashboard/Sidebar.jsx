@@ -1,66 +1,63 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../Context/AuthContext";
+import { Link, useHref } from "react-router-dom"
 
-const Sidebar = () => {
-  const { currentUser, logout } = useAuth();
-  const history = useHistory();
-  const handleLogout = async () => {
-    try {
-      await logout();
-      history.push("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return (
-    <>
-      <aside className="h-screen top-0 w-1/6">
-        <div className="">
-          <ul>
-            <li className="flex items-center py-2">
-              <Link to="/dashboard">
-                <i className="fas fa-home text-1xl pr-2"></i>
-                <span className="hidden lg:inline-block">Dashboard</span>
-              </Link>
-            </li>
-            <li className="flex items-center py-2">
-              <Link to={`/my-booking/${currentUser?.email}`}>
-                <i className="fab fa-bootstrap  text-1xl pr-2"></i>
-                <span className="hidden lg:inline-block">My Booking</span>{" "}
-              </Link>
-            </li>
-            <li className="flex items-center py-2">
-              <Link to={`/booking-list`}>
-                <i className="fab fa-bootstrap  text-1xl pr-2"></i>
-                <span className="hidden lg:inline-block">
-                  Manage Booking
-                </span>{" "}
-              </Link>
-            </li>
-            <li className="flex items-center py-2">
-              <Link to="/tour-list">
-                <i className="fas fa-list text-1xl pr-2"></i>
-                <span className="hidden lg:inline-block">Tour List</span>
-              </Link>
-            </li>
-            <li className="flex items-center py-2">
-              <Link to="/add-tour">
-                <i className="fas fa-plus text-1xl pr-2"></i>
-                <span className="hidden lg:inline-block">Add Tour</span>
-              </Link>
-            </li>
-            <li className="flex items-center text-red-400 font-bold hover:border-gray-900 py-2 border-t-2 border-gray-700">
-              <Link to="#" onClick={handleLogout}>
-                <i className="fas fa-sign-out-alt text-1xl pr-2"></i>
-                <span className="hidden lg:inline-block">Logout</span>
-              </Link>
-            </li>
-          </ul>
+
+
+export default function Sidebar({active, className}) {
+
+    const sidebarContent = [
+        {
+            text: "Dashboard",
+            address: "/",
+           
+        },
+        {
+            text: "Anggota",
+            address: "/",
+            
+        },
+        {
+            text: "Dokumentasi",
+            address: "/",
+            
+        },
+        {
+            text: "Perpustakaan",
+            address: "/",
+           
+        },
+        {
+            text: "Logistik",
+            address: "/",
+        },
+        {
+            text: "Konten Artikel",
+            address: "/",
+        },
+        
+
+
+    ]
+
+    return (
+        <div className={`bg-white rounded-xl ${className}`}>
+            <div className="flex flex-col justify-between px-3 py-2 w-48 gap-1 h-[500px] min-h-[400px]">    
+                <div className="flex flex-col gap-1">
+                {
+                    sidebarContent.map((e, i) => {
+                        return (
+                            <Link key={i} to={e.address} className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center ${active === e.text ? "bg-sky-200 text-sky-800" : ""}`}>{e.icon} <span>{e.text}</span></Link>
+                        )
+                    })
+                }
+                </div>
+                <div className="flex flex-col gap-1">
+                    <Link to="/ChangePassword" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center ${active === "Settings"? "bg-sky-200 text-sky-800" : ""}`}> Settings</Link>
+                    <Link to="/logout" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center ${active === "Logout" ? "bg-sky-200 text-sky-800" : ""}`}>Logout</Link>
+                </div>
+            </div>
+            
+                    
+            
         </div>
-      </aside>
-    </>
-  );
-};
-
-export default Sidebar;
+    )
+}
