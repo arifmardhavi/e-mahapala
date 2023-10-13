@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
 import Banner from "../components/Banner/Banner";
 import CustomerReviews from "../components/CustomerReviews/CustomerReviews";
 import Feature from "../components/Feature/Feature";
@@ -11,6 +12,7 @@ const apiKey = process.env.REACT_APP_API_HOST;
 const Home = () =>{
   return (
     <div >
+      <Navbar/>
     <Banner />
       <Feature />
       <div className="container">

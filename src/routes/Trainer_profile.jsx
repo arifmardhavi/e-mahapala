@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from "../components/Navbar/Navbar";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
@@ -20,6 +21,9 @@ const PokemonList = () => {
   }, []);
 
   return (
+    <div>
+  <Navbar/>
+
 <div className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 min-h-screen flex items-center justify-center">
 <div className="mr-20 ml-20 ">
   <h1 className="text-2xl font-semibold mb-4 pt-10">mungkin diisi para profil pt</h1>
@@ -46,7 +50,7 @@ const PokemonList = () => {
     </div>
   )}
 </div>
-</div>
+</div></div>
   );
 };
 
