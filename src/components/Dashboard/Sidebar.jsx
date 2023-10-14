@@ -7,12 +7,12 @@ export default function Sidebar({active, className}) {
     const sidebarContent = [
         {
             text: "Dashboard",
-            address: "/",
+            address: "/admin",
            
         },
         {
             text: "Anggota",
-            address: "/",
+            address: "/editanggota",
             
         },
         {

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home.jsx';
 import TrainerProfile from './routes/Trainer_profile';
 import Dashboard_admin from './routes/Dashboard_admin';
+import Editanggota from './routes/Edit_anggota';
 import Login from './routes/Login';
 
 function App() {
@@ -17,9 +18,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/trainerprofiles" element={<TrainerProfile />} />
-        <Route path="/trainerprofiles" element={<Dashboard_admin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Dashboard_admin />} />
+        <Route path="/editanggota" element={<Editanggota />} />
       </Routes>
     </Router>
     </>

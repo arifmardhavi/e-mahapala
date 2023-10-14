@@ -20,10 +20,12 @@ const dashboardAdmin = () =>{
                         </div>
                         
                     </div>
-
+                    <div className="flex flex-row gap-3">
                     <Sidebar/>
-
+                    
                     </div>
+                    </div>
+                    
       
       </div>
       
