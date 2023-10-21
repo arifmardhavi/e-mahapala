@@ -14,7 +14,7 @@ const PokemonList = () => {
         setPokemonList(data.results);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch((error) => {  
         console.error('Error fetching data:', error);
         setLoading(false);
       });
@@ -26,7 +26,7 @@ const PokemonList = () => {
 
 <div className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 min-h-screen flex items-center justify-center">
 <div className="mr-20 ml-20 ">
-  <h1 className="text-2xl font-semibold mb-4 pt-10">mungkin diisi para profil pt</h1>
+  <h1 className="text-2xl font-semibold mb-4 pt-10">Galeri</h1>
   {loading ? (
     <p>Loading...</p>
   ) : (

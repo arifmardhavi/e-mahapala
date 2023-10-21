@@ -2,35 +2,6 @@ import { Link, useHref } from "react-router-dom";
 
 export default function Navbar({ active }) {
 
-    const navbarContent = [
-        {
-            text: "Beranda",
-            address: "/",
-            class:"px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
-        },
-        {
-            text: "Menu ada 2",
-            address: "/trainerprofiles",
-            class:"px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
-
-        },
-        {
-            text: "Galeri",
-            address: "/",
-            class:"px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
-        },
-        {
-            text: "kontak",
-            address: "/",
-            class:"px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
-        },
-        {
-            text: "Login",
-            address: "/",
-            class:"px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-        },
-        
-    ]
 
     return (
         <div className="flex flex-wrap sticky">
@@ -50,15 +21,15 @@ export default function Navbar({ active }) {
                     </li>
         <li className="nav-item">
                       <a href
-                        ={"/trainerprofiles"}
+                        ={"/blog"}
                         className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
                       >
-                        menu2"ada"
+                        Blog
                       </a>
                     </li>
         <li className="nav-item">
                       <a href
-                        ={"/"}
+                        ={"/trainerprofiles"}
                         className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
                       >
                         Galeri
