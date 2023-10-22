@@ -29,10 +29,10 @@ export default function Navbar({ active }) {
                     </li>
         <li className="nav-item">
                       <a href
-                        ={"/trainerprofiles"}
+                        ={"/Dokumentasi"}
                         className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
                       >
-                        Galeri
+                        Dokumentasi
                       </a>
                     </li>
         <li className="nav-item">
@@ -40,7 +40,7 @@ export default function Navbar({ active }) {
                         ={"/"}
                         className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
                       >
-                        contact
+                        Kontak
                       </a>
                     </li>
                     <li className="nav-item bg-indigo-500 my-2 lg:my-0 rounded-md mr-4">
