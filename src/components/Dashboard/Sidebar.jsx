@@ -17,21 +17,21 @@ export default function Sidebar({active, className}) {
         },
         {
             text: "Dokumentasi",
-            address: "/",
+            address: "/dokumentasiadmin",
             
         },
         {
             text: "Perpustakaan",
-            address: "/",
+            address: "/perpustakaanadmin",
            
         },
         {
             text: "Logistik",
-            address: "/",
+            address: "/logistik",
         },
         {
             text: "Konten Artikel",
-            address: "/",
+            address: "/admin",
         },
         
 

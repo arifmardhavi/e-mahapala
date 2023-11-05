@@ -6,7 +6,7 @@ import Review from "./Review";
 const reviews = [
   {
     key: "HG42h",
-    name: "Rashed Ratan",
+    name: "Rafi aditiya",
     img: `${rashed}`,
     detail:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et",

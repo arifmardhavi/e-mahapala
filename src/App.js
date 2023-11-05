@@ -11,6 +11,10 @@ import Editanggota from './routes/Edit_anggota';
 import Login from './routes/Login';
 import Blog from './routes/Blog';
 import Dokumentasi from './routes/Dokumentasi';
+import DokumentasiAdmin from './routes/Dokumentasi_admin.jsx';
+import PerpustakaanAdmin from './routes/Perpustakaan__admin.jsx';
+import Logistik from './routes/Logistik.jsx';
+import Kontak from './routes/Kontak';
 
 function App() {
   return (
@@ -25,6 +29,10 @@ function App() {
         <Route path="/editanggota" element={<Editanggota />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/dokumentasi" element={<Dokumentasi />} />
+        <Route path="/dokumentasiadmin" element={<DokumentasiAdmin />} />
+        <Route path="/perpustakaanadmin" element={<PerpustakaanAdmin />} />
+        <Route path="/logistik" element={<Logistik />} />
+        <Route path="/kontak" element={<Kontak />} />
       </Routes>
     </Router>
     </>

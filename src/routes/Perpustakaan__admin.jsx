@@ -5,11 +5,11 @@ import lipu from "../images/review/1.png";
 import { Link, useHref } from "react-router-dom"
 
 
-const EditAnggota = () =>{
+const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const data = [
-        { nim: '123456', nama: 'John Doe', divisi: 'IT', status: 'Aktif' },
-        { nim: '789012', nama: 'Jane Doe', divisi: 'Marketing', status: 'Non-Aktif' },
+        { nama: '123.jpg', divisi: 'John Doe', kategori: 'IT'},
+        { nama: '234.jpg', divisi: 'Jane Doe', kategori: 'Marketing' },
         // ... tambahkan data lainnya sesuai kebutuhan
       ];
     
@@ -25,11 +25,11 @@ const EditAnggota = () =>{
                             <span className="text-slate-600">{''}</span>
                         </div>
                         <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
-                            <b className="text-2xl">Manajemen anggota </b>
+                            <b className="text-2xl">Manajemen Arsip Perpustakaan </b>
                             <span className="text-slate-600"></span>
                             <button
                     className="px-3 bg-blue-600 text-white rounded-xl py-2 self-end hover:bg-blue-700"
-                    onClick={() => setShowModal(true)}>Tambah Anggota</button>
+                    onClick={() => setShowModal(true)}>Tambah Arsip</button>
                   
                     
                   
@@ -43,23 +43,22 @@ const EditAnggota = () =>{
       <table className="px-3 py-2">
         <thead>
           <tr>
-            <th className="py-2 border-b w-64 text-left px-5">NIM</th>
             <th className="py-2 border-b w-64 text-left px-5">Nama</th>
             <th className="py-2 border-b w-64 text-left px-5">Divisi</th>
-            <th className="py-2 border-b w-64 text-left px-5">Status</th>
+            <th className="py-2 border-b w-64 text-left px-5">Kategori</th>
             <th className="py-2 boer-rdb w-64 text-left px-5">Aksi</th>
           </tr>
         </thead>
         <tbody>
           {data.map((rowData) => (
             <tr key={rowData.nim}>
-              <td className="py-2 px-4 border-b">{rowData.nim}</td>
               <td className="py-2 px-4 border-b">{rowData.nama}</td>
               <td className="py-2 px-4 border-b">{rowData.divisi}</td>
-              <td className="py-2 px-4 border-b">{rowData.status}</td>
+              <td className="py-2 px-4 border-b">{rowData.kategori}</td>
               <td className="py-2 px-4 border-b">{
                 <div>
                 <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
+                <Link to="/" className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</Link>
                 <Link to="/" className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</Link>
                 </div>
 
@@ -102,13 +101,6 @@ const EditAnggota = () =>{
       {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
       <form onSubmit={'handleSubmit'}>
         <div className="flex flex-col">
-        <label className="mb-2">Foto</label>
-        <input className="mb-2"
-            type="file"
-            name="profilePicture"
-            accept="image/*"
-            onChange={''}
-        />
           <label className="mb-2">NIM</label>
           <input
             type="text"
@@ -200,4 +192,4 @@ const EditAnggota = () =>{
       
     );
   }
-  export default EditAnggota;
+  export default Dokumentasiadmin;

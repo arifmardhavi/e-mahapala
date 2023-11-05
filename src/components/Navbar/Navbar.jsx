@@ -37,7 +37,7 @@ export default function Navbar({ active }) {
                     </li>
         <li className="nav-item">
                       <a href
-                        ={"/"}
+                        ={"/kontak"}
                         className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
                       >
                         Kontak
