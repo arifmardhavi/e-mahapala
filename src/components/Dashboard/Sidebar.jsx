@@ -31,7 +31,7 @@ export default function Sidebar({active, className}) {
         },
         {
             text: "Konten Artikel",
-            address: "/admin",
+            address: "/kontenartikel",
         },
         
 

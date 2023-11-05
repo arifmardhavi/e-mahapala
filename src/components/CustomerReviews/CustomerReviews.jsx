@@ -3,6 +3,7 @@ import rashed from "../../images/review/1.png";
 import sohel from "../../images/review/1.png";
 import lipu from "../../images/review/1.png";
 import Review from "./Review";
+import Footer from "../../components/Footer/Footer";
 const reviews = [
   {
     key: "HG42h",
@@ -31,20 +32,15 @@ const CustomerReviews = () => {
   return (
     <div className="container py-24">
       <div className="text-center w-full">
-        <p className="text-primary font-semibold">Lorem ipsum dolor sit amet</p>
-        <h1 className="py-4 text-5xl font-semibold">lorem ipsum</h1>
-        <p className="">
-        Lorem ipsum dolor sit amet, 
-        consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore 
-        et<br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Sed do eiusmod tempor incididunt ut labore et
-        </p>
+        <h1 className="py-4 text-5xl font-semibold">Berita Terbaru</h1>
+        
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-20 py-20">
         {reviews.map((review) => (
           <Review key={review.key} review={review} />
         ))}
       </div>
+      <Footer/>
     </div>
   );
 };
