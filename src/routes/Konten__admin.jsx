@@ -99,11 +99,28 @@ const Dokumentasiadmin = () =>{
       {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
       <form onSubmit={'handleSubmit'}>
         <div className="flex flex-col">
-          <label className="mb-2">NIM</label>
+          <label className="mb-2">Judul</label>
           <input
             type="text"
             name="nim"
-            value={dataid && dataid.id}
+            value={dataid.id}
+            onChange={'handleChange'}
+            className="border p-2 mb-2"
+          />
+
+      <label className="mb-2">Gambar</label>
+          <input
+            type="file"
+            name="nim"
+            value={''}
+            onChange={'handleChange'}
+            className="border p-2 mb-2"
+          />
+      <label className="mb-2">Konten</label>
+          <input
+            type="text"
+            name="nim"
+            value={dataid.konten}
             onChange={'handleChange'}
             className="border p-2 mb-2"
           />
