@@ -7,12 +7,22 @@ import { Link, useHref } from "react-router-dom"
 
 const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
+    const button = document.getElementById("myButton");
+    const [Modallihat, Setmodallihat] = useState(false);
+    const [dataid, setRowData] = useState();
+    const handleViewClick = (data) => {
+      Setmodallihat(true); // Menampilkan modal
+      setRowData(data); // Mengatur rowData dengan data yang sesua
+    };
     const data = [
         { judul: 'artikel abcd', gambar: '123.jpg', konten: 'IT',id: 1 },
         { judul: 'artikel abcd', gambar: '123.jpg', konten: 'Marketing', id: 2 },
         // ... tambahkan data lainnya sesuai kebutuhan
       ];
-    
+
+      //button.addEventListener("click", function() {
+      //    console.log(`ID: ${data.id}`);
+      //});
       // State untuk menyimpan data yang dipilih untuk dihapus
       
     return (
@@ -51,13 +61,81 @@ const Dokumentasiadmin = () =>{
         </thead>
         <tbody>
           {data.map((rowData) => (
-            <tr key={rowData.nim}>
+            <tr key={rowData.id}>
               <td className="py-2 px-4 border-b">{rowData.judul}</td>
               <td className="py-2 px-4 border-b">{rowData.gambar}</td>
               <td className="py-2 px-4 border-b">{rowData.konten}</td>
               <td className="py-2 px-4 border-b">{
                 <div>
-                <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
+                <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat {rowData.id}</button>
+                {Modallihat ? (
+        <>
+        
+          <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+  <div class="fixed inset-0 z-10 overflow-y-auto pt-32">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
+      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg min-h-20">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <div class="mt-2">
+              <div className="flex justify-center items-center">
+      {/* Sebelah Kiri: Bagian Foto */}
+      <div className="mr-8">
+        {/* Tambahkan logika untuk menampilkan foto */}
+        <img
+  src={lipu}
+  alt="Foto Profil"
+  className="w-32 h-32 object-cover "
+/>
+
+        {/* Input untuk mengunggah foto */}
+        
+      </div>
+
+      {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
+      <form onSubmit={'handleSubmit'}>
+        <div className="flex flex-col">
+          <label className="mb-2">NIM</label>
+          <input
+            type="text"
+            name="nim"
+            value={dataid && dataid.id}
+            onChange={'handleChange'}
+            className="border p-2 mb-2"
+          />
+
+         
+
+          {/* Tombol Submit */}
+          
+        </div>
+      </form>
+    </div>
+                <p class="text-sm text-gray-500">{''}</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <button type="button" onClick={() => Setmodallihat(false)}
+          class="inline-flex w-full justify-center rounded-md border 
+          border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm 
+          hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 
+          sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+        </>
+      ) : null}
                 <Link to="/" className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</Link>
                 <Link to="/" className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</Link>
                 </div>
@@ -70,6 +148,9 @@ const Dokumentasiadmin = () =>{
     </div>
       </div>
                     </div>
+
+                   
+
                     
                     {showModal ? (
         <>
