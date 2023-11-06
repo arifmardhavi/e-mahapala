@@ -15,8 +15,9 @@ const Dokumentasiadmin = () =>{
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
     const data = [
-        { judul: 'artikel abcd', gambar: '123.jpg', konten: 'IT',id: 1 },
-        { judul: 'artikel abcd', gambar: '123.jpg', konten: 'Marketing', id: 2 },
+        { judul: 'artikel abcd', gambar: '33.jpg', konten: 'IT',id: 1 },
+        { judul: 'artikel 123', gambar: 'ff.jpg', konten: 'Marketing', id: 2 },
+      //  { judul: 'artikel asd', gambar: 'adw.jpg', konten: 'Fishing', id: 3 },
         // ... tambahkan data lainnya sesuai kebutuhan
       ];
 
@@ -67,7 +68,8 @@ const Dokumentasiadmin = () =>{
               <td className="py-2 px-4 border-b">{rowData.konten}</td>
               <td className="py-2 px-4 border-b">{
                 <div>
-                <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat {rowData.id}</button>
+                <button onClick={() =>  '' } className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat {rowData.id}</button>
+                <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                 {Modallihat ? (
         <>
         
@@ -103,7 +105,7 @@ const Dokumentasiadmin = () =>{
           <input
             type="text"
             name="nim"
-            value={dataid.id}
+            value={dataid.judul}
             onChange={'handleChange'}
             className="border p-2 mb-2"
           />
@@ -153,7 +155,6 @@ const Dokumentasiadmin = () =>{
 </div>
         </>
       ) : null}
-                <Link to="/" className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</Link>
                 <Link to="/" className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</Link>
                 </div>
 
