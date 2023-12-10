@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import BannerDokumentasi from "../components/Banner/BannerDokumentasi";
 
-const apiKey = process.env.REACT_APP_API_HOST;
+const apiKey = `https://pokeapi.co/media`;
 const Dokumentasi = () =>{
     const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,18 +28,18 @@ const Dokumentasi = () =>{
     <div >
       <Navbar/>
     <BannerDokumentasi />
-      <div className="container">
+      <div className="">
         
         <h1 className="text-left text-3xl font-semibold pl-10 pt-10">Dokumentasi Kegiatan Terbaru</h1>
           
         {loading ? (
     <p>Loading...</p>
   ) : (
-    <div className="grid grid-cols-1 md:grid-cols-4 mr-36 ml-36 gap-4 pt-20 pb-36">
+    <div className="grid grid-cols-1 md:grid-cols-4 mt-20 gap-4 mb-20 border">
       {pokemonList.slice(0, 8).map((pokemon, index) => (
   <div
     key={index}
-    className="bg-gray-200 p-4 rounded-lg shadow-lg"
+    className="bg-gray-200 p-4 rounded-lg shadow-lg mx-12"
   >
     <img
       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
