@@ -12,7 +12,7 @@ const Banner = () => {
     >
       <div className="container ml-20">
         <h1 className="text-6xl capitalize text-gray-800 font-medium mb-4">
-          Selamat Datang Di Web Mahapala
+          Selamat Datang <br /> di Web Mahapala
         </h1>
         <p className="w-2/5">
         
