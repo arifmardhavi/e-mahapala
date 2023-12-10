@@ -10,7 +10,7 @@ const HappyCustomers = () => {
         }}
       >
         <div className="opacity-80 absolute bg-black  w-full"></div>
-        <div className="container relative py-8 text-center text-black">
+        <div className=" relative py-8 text-center text-black">
           <h1 className="text-4xl py-2 font-Poppins font-semibold">
             Visi <span className="text-black">Misi</span> Mahapala
           </h1>
