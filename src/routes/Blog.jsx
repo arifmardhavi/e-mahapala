@@ -57,7 +57,7 @@ const Blog = () =>{
         <h1 className="text-3xl capitalize text-gray-800 font-medium mb-4">
           Kegiatan Mahapala
         </h1>
-        <p className="w-2/5 text-justify">
+        <p className="w-3/5 text-justify">
           Mahapala adalah UKM di UPN "Veteran" Jawa Timur yang fokus pada pengembangan diri, kepemimpinan, dan pengabdian masyarakat. Mereka terlibat dalam kegiatan sosial dan pengembangan diri mahasiswa.
         </p>
       </div>
