@@ -25,8 +25,8 @@ const Dokumentasi = () =>{
       });
   }, []);
   return (
-  <div >
-    <Navbar/>
+    <div >
+      <Navbar/>
     <BannerDokumentasi />
       <div className="">
         
@@ -59,9 +59,9 @@ const Dokumentasi = () =>{
 
         </div>
 
-          </div>
-          <Footer/>
-  </div>
+        </div>
+        <Footer/>
+      </div>
     
   );
 }
