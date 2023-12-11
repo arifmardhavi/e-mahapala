@@ -45,8 +45,28 @@ const Dokumentasi = () =>{
             </div>
           </div>
 
-          <div className="kontak-mahapala">
-            <h1 className="text-left text-xl font-semibold ml-20 pt-10">Hubungi Kami</h1>
+          <div className="kontak-mahapala ml-20">
+            <h1 className="text-left text-xl font-semibold pt-10">Hubungi Kami</h1>
+            <p className="py-3 text-gray-800 font-regular">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem voluptate excepturi, animi beatae perferendis blanditiis maxime dolor unde quam hic natus, sunt necessitatibus earum eveniet eum architecto ratione et cupiditate?</p>
+            
+            <div className="sosmed flex">
+              <img 
+              src="https://www.logo.wine/a/logo/Instagram/Instagram-Glyph-Color-Logo.wine.svg" 
+              alt=""
+              className="h-24" />
+              <div className="instagram">
+              <h3 className="font-bold">Instagram</h3>
+                  <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus illo, reprehenderit voluptates doloribus iusto repellendus magnam blanditiis eveniet fugiat pariatur tempora, suscipit facere saepe cum eos, velit consequatur doloremque dolores.</span>
+              </div>
+              
+              <img src="" alt="" />
+              <div className="whatsApp">
+                <h3 className="font-bold">WhatsApp</h3>
+                  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit animi ex ullam quia soluta amet assumenda id incidunt mollitia? Ut quaerat numquam similique error corporis eius ipsa facilis aliquid modi?</span>
+        
+              </div>
+            </div>
+              
           </div>
       </div>
         <Footer/>
