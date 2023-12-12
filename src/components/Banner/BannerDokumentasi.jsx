@@ -10,16 +10,11 @@ const BannerBlog = () => {
         backgroundImage: `url(${banner})`,
       }}
     >
-      
         <div className="grid grid-cols-1 md:grid-cols-1 text-center gap-">
-
-
-
-          <div className="p4 ml- pt-36">
-
+          <div className="p4 ml- pt-12">
           <h1 className="text-6xl capitalize text-gray-800 font-medium mb-4">
-          Dokumentasi Kegiatan Rutin Mahapala <br></br>UPN Veteran Jawa Timur
-        </h1>
+            Dokumentasi Kegiatan Rutin Mahapala <br></br>UPN Veteran Jawa Timur
+          </h1>
             
           </div>
           
