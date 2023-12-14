@@ -29,12 +29,8 @@ const Dokumentasiadmin = () =>{
     return (
       <div >
       <div className="flex flex-col gap-3 h-screen w-screen bg-lime-500  lg:p-12 lg:py-6 overflow-y-hidden">
-                    <div className="flex flex-row gap-3">
-                        <div className="bg-white rounded-xl p-5 w-48 h-48 flex flex-col items-center justify-center">
-                            <b className="mt-5"></b>
-                            <b>{''}</b>
-                            <span className="text-slate-600">{''}</span>
-                        </div>
+                    <div className="flex flex-row gap-3 ml-64">
+                       
                         <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
                             <b className="text-2xl">Manajemen Konten</b>
                             <span className="text-slate-600"></span>
@@ -50,7 +46,7 @@ const Dokumentasiadmin = () =>{
                     <div className="flex flex-row gap-3">
                         
                     <Sidebar/>
-    <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px]">     
+    <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px] ml-64">     
       <table className="px-3 py-2">
         <thead>
           <tr>
