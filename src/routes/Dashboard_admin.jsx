@@ -61,8 +61,7 @@ const Dashboardadmin = () =>{
                     </div>
                     <button
                     className="px-3 bg-blue-600 text-white rounded-xl py-2 self-center hover:bg-blue-700"
-                    onClick={() => setShowModal(true)}
-                        >
+                    onClick={() => setShowModal(true)}>
                     Tambah Konten
                     </button>
                 </div>
@@ -191,9 +190,6 @@ const Dashboardadmin = () =>{
         </tbody>
                 </table>
                 </div>
-
-    
-
                     </div>
 
 
@@ -210,8 +206,7 @@ const Dashboardadmin = () =>{
                     </div>
                     <button
                     className="px-3 bg-blue-600 text-white rounded-xl py-2 self-center hover:bg-blue-700"
-                    onClick={() => setShowModal(true)}
-                        >
+                    onClick={() => setShowModal(true)}>
                     Tambah Dokumentasi
                     </button>
                     </div>

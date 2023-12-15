@@ -27,18 +27,7 @@ const EditAnggota = () =>{
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
         <div className="flex gap-3 ml-64">
-            
-            
-            {/* <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
-              <b className="text-2xl">Manajemen anggota </b>
-              <span className="text-slate-600"></span>
-              <button
-                className="px-3 bg-blue-600 text-white rounded-xl py-2 self-center hover:bg-blue-700"
-                onClick={() => setShowModal(true)}>Tambah Anggota
-              </button>
-            </div> */}
-
-                <div className="bg-white rounded-xl p-5 flex justify-between items-center flex-grow">
+                <div className="bg-white rounded-xl p-5 flex justify-between items-center flex-grow mb-2">
                     <div className="">
                     <b className="text-2xl">Managament Anggota</b>
                     </div>
@@ -52,7 +41,53 @@ const EditAnggota = () =>{
 
         <div className="flex flex-row gap-3 ml-64">
 
-          <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px]">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    NIM               
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Nama
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Divisi
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Aksi
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          {data.map((rowData) => (
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                key={rowData.nim}>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {rowData.nim}
+                </th>
+                <td class="px-6 py-4">
+                {rowData.nama}           
+                </td>
+                <td class="px-6 py-4">
+                {rowData.divisi}   
+                </td>
+                <td class="px-6 py-4">
+                {rowData.status}          
+                </td>
+                <td class="px-6 py-4">
+                  <div>
+                <a href="#" class="hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center">View</a>
+                <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}>Edit</button>
+                <a href="#" class="hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center ">Delete</a>
+                
+
+                      {Modallihat ? (
+            <>
+          {/* <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px]">
             <table className="px-3 py-2">
               <thead>
                 <tr>
@@ -75,7 +110,7 @@ const EditAnggota = () =>{
                       <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
                       <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                       {Modallihat ? (
-            <>
+              <> */}
         
           <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -156,10 +191,10 @@ const EditAnggota = () =>{
             </div>
         </>
       ) : null}
-                <Link to="/" className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</Link>
+                
                 </div>
 
-              }</td>
+              </td>
             </tr>
           ))}
         </tbody>
