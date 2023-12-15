@@ -25,6 +25,10 @@ const Dokumentasiadmin = () =>{
       <div >
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
+                <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1 ml-64">
+                        <span className="text-slate-600">Management Logistik Mahapala</span>
+                        <b className="text-2xl">55{''}</b>      
+                </div>
               <div className="flex flex-row gap-3 ml-64">
                        
                         {/* <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
@@ -34,14 +38,14 @@ const Dokumentasiadmin = () =>{
                     className="px-3 bg-blue-600 text-white rounded-xl py-2 self-end hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>Tambah Dokumentasi</button>
                         </div> */}
-                <div className="bg-white rounded-xl p-5 flex justify-between items-center flex-grow">
+                <div className=" p-5 flex justify-between items-center flex-grow">
                     <div className="">
-                    <b className="text-2xl">Managament Logistik</b>
+                    <b className="text-2xl">Tabel Logistik</b>
                     </div>
                     <button
-                    className="px-3 bg-blue-600 text-white rounded-xl py-2 hover:bg-blue-700"
+                    className="px-3 bg-blue-600 text-white rounded-full py-2 hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>
-                    Tambah Data Barang
+                    + Tambah Data Barang
                     </button>
                 </div>
               </div>

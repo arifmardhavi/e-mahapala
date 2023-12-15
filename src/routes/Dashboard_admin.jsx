@@ -60,9 +60,9 @@ const Dashboardadmin = () =>{
                     <b className="text-2xl">Tabel Konten</b>
                     </div>
                     <button
-                    className="px-3 bg-blue-600 text-white rounded-xl py-2 self-center hover:bg-blue-700"
+                    className="px-3 bg-blue-600 text-white rounded-full py-2 self-center hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>
-                    Tambah Konten
+                    + Tambah Konten
                     </button>
                 </div>
                     
@@ -205,9 +205,9 @@ const Dashboardadmin = () =>{
                     <span className="text-slate-600"></span>
                     </div>
                     <button
-                    className="px-3 bg-blue-600 text-white rounded-xl py-2 self-center hover:bg-blue-700"
+                    className="px-3 bg-blue-600 text-white rounded-full py-2 self-center hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>
-                    Tambah Dokumentasi
+                    + Tambah Dokumentasi
                     </button>
                     </div>
                     

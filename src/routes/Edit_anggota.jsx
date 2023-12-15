@@ -37,9 +37,9 @@ const EditAnggota = () =>{
                     <b className="text-2xl">Tabel Anggota</b>
                     </div>
                     <button
-                    className="px-3 bg-blue-600 text-white rounded-xl py-2 hover:bg-blue-700"
+                    className="px-3 bg-blue-600 text-white rounded-full py-2 hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>
-                    Tambah Anggota
+                    + Tambah Anggota
                     </button>
                 </div>
         </div>

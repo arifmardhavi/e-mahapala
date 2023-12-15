@@ -30,6 +30,9 @@ const Dokumentasiadmin = () =>{
       <div >
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
+                <div className="bg-white rounded-xl p-5 flex flex-col items-center flex-grow gap-1 ml-64">
+                        <b className="text-slate-900 text-3xl justify-center">Management Konten Mahapala</b>
+                </div>
               <div className="flex flex-row gap-3 ml-64">
                        
                         {/* <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
@@ -39,14 +42,14 @@ const Dokumentasiadmin = () =>{
                     className="px-3 bg-blue-600 text-white rounded-xl py-2 self-end hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>Tambah Konten</button>
                         </div> */}
-                <div className="bg-white rounded-xl p-5 flex justify-between items-center flex-grow">
+                <div className="rounded-xl p-5 flex justify-between items-center flex-grow">
                     <div className="">
-                    <b className="text-2xl">Managament Konten</b>
+                    <b className="text-2xl">Tabel Data Artikel</b>
                     </div>
                     <button
-                    className="px-3 bg-blue-600 text-white rounded-xl py-2 hover:bg-blue-700"
+                    className="px-3 bg-blue-600 text-white rounded-full py-2 hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>
-                    Tambah Konten
+                    + Tambah Konten
                     </button>
                 </div>
               </div>
