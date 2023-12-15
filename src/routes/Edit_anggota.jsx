@@ -22,23 +22,36 @@ const EditAnggota = () =>{
       // State untuk menyimpan data yang dipilih untuk dihapus
       
     return (
-      <div >
-      <div className="flex flex-col gap-3 h-screen w-screen bg-lime-500  lg:p-12 lg:py-6 overflow-y-hidden">
-        <div className="flex flex-row gap-3 ml-64">
+      <div>
+        
+      <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
+        <Sidebar/>
+        <div className="flex gap-3 ml-64">
             
             
-            <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
+            {/* <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
               <b className="text-2xl">Manajemen anggota </b>
               <span className="text-slate-600"></span>
               <button
-                className="px-3 bg-blue-600 text-white rounded-xl py-2 self-end hover:bg-blue-700"
+                className="px-3 bg-blue-600 text-white rounded-xl py-2 self-center hover:bg-blue-700"
                 onClick={() => setShowModal(true)}>Tambah Anggota
               </button>
-            </div>         
+            </div> */}
+
+                <div className="bg-white rounded-xl p-5 flex justify-between items-center flex-grow">
+                    <div className="">
+                    <b className="text-2xl">Managament Anggota</b>
+                    </div>
+                    <button
+                    className="px-3 bg-blue-600 text-white rounded-xl py-2 hover:bg-blue-700"
+                    onClick={() => setShowModal(true)}>
+                    Tambah Anggota
+                    </button>
+                </div>
         </div>
-        
+
         <div className="flex flex-row gap-3 ml-64">
-          <Sidebar/>
+
           <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px]">
             <table className="px-3 py-2">
               <thead>
