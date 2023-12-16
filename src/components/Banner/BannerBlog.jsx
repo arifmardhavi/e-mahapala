@@ -16,7 +16,7 @@ const BannerBlog = () => {
             <img
             src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwartapalaindonesia.com%2Fwp-content%2Fuploads%2F2021%2F04%2F1618299955594-1-960x640.jpg&f=1&nofb=1&ipt=04d5e7ab677519ce4f2584156fc7f0e94b612b0e07f0a8e7648b9a0b7471986c&ipo=images"
             alt="Gambar dari Google"
-            className="max-w-6xl h-96 rounded-lg"/>
+            className="max-w-6xl h-[300px] rounded-lg"/>
           </div>
 
         <div className="p4 pl-36 ml- pt-36">

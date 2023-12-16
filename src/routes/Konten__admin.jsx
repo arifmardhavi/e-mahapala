@@ -30,7 +30,7 @@ const Dokumentasiadmin = () =>{
       <div >
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
-                <div className="bg-white rounded-xl p-5 flex flex-col items-center flex-grow gap-1 ml-64">
+                <div className="bg-white rounded-xl p-3 flex flex-col items-center flex-grow gap-1 ml-64">
                         <b className="text-slate-900 text-3xl justify-center">Management Konten Mahapala</b>
                 </div>
               <div className="flex flex-row gap-3 ml-64">
@@ -42,7 +42,7 @@ const Dokumentasiadmin = () =>{
                     className="px-3 bg-blue-600 text-white rounded-xl py-2 self-end hover:bg-blue-700"
                     onClick={() => setShowModal(true)}>Tambah Konten</button>
                         </div> */}
-                <div className="rounded-xl p-5 flex justify-between items-center flex-grow">
+                <div className="rounded-xl flex justify-between items-center flex-grow">
                     <div className="">
                     <b className="text-2xl">Tabel Data Artikel</b>
                     </div>
@@ -55,19 +55,20 @@ const Dokumentasiadmin = () =>{
               </div>
                     <div className="flex flex-row gap-3">
                         
-    <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px] ml-64">     
-      <table className="px-3 py-2">
-        <thead>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg ml-64">     
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th className="py-2 border-b w-64 text-left px-5">Judul</th>
-            <th className="py-2 border-b w-64 text-left px-5">Gambar</th>
-            <th className="py-2 border-b w-64 text-left px-5">Konten</th>
-            <th className="py-2 boer-rdb w-64 text-left px-5">Aksi</th>
+            <th className="py-3 border-b w-64 text-left px-5">Judul</th>
+            <th className="py-3 border-b w-64 text-left px-5">Gambar</th>
+            <th className="py-3 border-b w-64 text-left px-5">Konten</th>
+            <th className="py-3 border-b w-64 text-left px-5">Aksi</th>
           </tr>
         </thead>
         <tbody>
           {data.map((rowData) => (
-            <tr key={rowData.id}>
+            <tr key={rowData.id}
+            className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <td className="py-2 px-4 border-b">{rowData.judul}</td>
               <td className="py-2 px-4 border-b">{rowData.gambar}</td>
               <td className="py-2 px-4 border-b">{rowData.konten}</td>

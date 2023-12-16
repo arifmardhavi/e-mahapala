@@ -25,10 +25,9 @@ const Dokumentasiadmin = () =>{
       <div >
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
-        <div className="bg-white rounded-xl p-3 flex flex-col items-start flex-grow gap-1 ml-64">
+        <div className="bg-white rounded-xl p-3 flex flex-col text-center ml-64">
                         <b className="text-2xl">Management Dokumentasi Kegiatan</b>
                         </div>
-        <div className="flex gap-3 ml-64"></div>
                     <div className="flex flex-row gap-3 ml-64">
                         
                         {/* <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
@@ -39,7 +38,7 @@ const Dokumentasiadmin = () =>{
                             onClick={() => setShowModal(true)}>Tambah Dokumentasi</button>
                         </div> */}
                         
-                        <div className="rounded-xl p-5 flex justify-between items-center flex-grow">
+                        <div className="rounded-xl flex justify-between items-center flex-grow">
                           <div className="">
                           <b className="text-2xl">Tabel Data Dokumentasi</b>
                           </div>
@@ -52,22 +51,22 @@ const Dokumentasiadmin = () =>{
                     </div>
               <div className="flex flex-row gap-3">
 
-    <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px] ml-64">     
-      <table className="px-3 py-2">
-        <thead>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg ml-64">     
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th className="py-2 border-b w-64 text-left px-5">Gambar</th>
-            <th className="py-2 border-b w-64 text-left px-5">Nama</th>
-            <th className="py-2 border-b w-64 text-left px-5">Kategori</th>
-            <th className="py-2 border-b w-64 text-left px-5">Divisi</th>
-            <th className="py-2 boer-rdb w-64 text-left px-5">Status</th>
-            <th className="py-2 boer-rdb w-64 text-left px-5">Tanggal</th>
-            <th className="py-2 boer-rdb w-64 text-left px-5">Aksi</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Gambar</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Nama</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Kategori</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Divisi</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Status</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Tanggal</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Aksi</th>
           </tr>
         </thead>
         <tbody>
           {data.map((rowData) => (
-            <tr key={rowData.nim}>
+            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <td className="py-2 px-4 border-b">{rowData.Gambar}</td>
               <td className="py-2 px-4 border-b">{rowData.nama}</td>
               <td className="py-2 px-4 border-b">{rowData.kategori}</td>

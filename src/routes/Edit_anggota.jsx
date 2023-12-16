@@ -32,7 +32,7 @@ const EditAnggota = () =>{
                         <b className="text-2xl">sekian{''}</b>                 
                         </div> 
         <div className="flex gap-3 ml-64">
-                <div className="rounded-xl p-5 flex justify-between items-center flex-grow mb-2">
+                <div className="rounded-xl flex justify-between items-center flex-grow mb-2">
                     <div className="">
                     <b className="text-2xl">Tabel Anggota</b>
                     </div>
@@ -50,19 +50,19 @@ const EditAnggota = () =>{
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 border-b">
                     NIM               
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 border-b">
                     Nama
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 border-b">
                     Divisi
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 border-b">
                     Status
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 border-b">
                     Aksi
                 </th>
             </tr>
