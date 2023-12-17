@@ -23,14 +23,24 @@ const Dokumentasiadmin = () =>{
       
     return (
       <div >
-      <div className="flex flex-col gap-3 h-screen w-screen bg-lime-500  lg:p-12 lg:py-6 overflow-y-hidden">
-                    <div className="flex flex-row gap-3">
-                        <div className="bg-white rounded-xl p-5 w-48 h-48 flex flex-col items-center justify-center">
-                            <b className="mt-5"></b>
-                            <b>{''}</b>
-                            <span className="text-slate-600">{''}</span>
-                        </div>
+      <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
+      <Sidebar/>
+      <div className="flex flex-row gap-10 ml-64">
+                        
                         <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
+                        <span className="text-slate-600">Management Berkas Mahapala</span>
+                        <b className="text-2xl">55{''}</b>      
+                        </div>
+
+                        <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
+                        <span className="text-slate-600">Jumlah Data Berkas</span>
+                        <b className="text-2xl">34{''}</b>  
+                        </div>
+                                   
+                    </div>  
+            <div className="flex flex-row gap-3 ml-64">
+                        
+                        {/* <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
                             <b className="text-2xl">Manajemen Arsip Perpustakaan </b>
                             <span className="text-slate-600"></span>
                             <button
@@ -39,25 +49,35 @@ const Dokumentasiadmin = () =>{
                   
                     
                   
-                        </div>
-                        
+                        </div> */}
+              <div className="rounded-xl flex justify-between items-center flex-grow">
+                    <div className="">
+                    <b className="text-2xl">Tabel Managament Perpustakaan</b>
                     </div>
+                    <button
+                    className="px-3 bg-blue-600 text-white rounded-full py-2 hover:bg-blue-700"
+                    onClick={() => setShowModal(true)}>
+                    + Tambah Arsip
+                    </button>
+                </div>
+                
+                        
+            </div>
                     <div className="flex flex-row gap-3">
                         
-                    <Sidebar/>
-    <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px]">     
-      <table className="px-3 py-2">
-        <thead>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg ml-64">     
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th className="py-2 border-b w-64 text-left px-5">Nama</th>
             <th className="py-2 border-b w-64 text-left px-5">Divisi</th>
             <th className="py-2 border-b w-64 text-left px-5">Kategori</th>
-            <th className="py-2 boer-rdb w-64 text-left px-5">Aksi</th>
+            <th className="py-2 border-b w-64 text-left px-5">Aksi</th>
           </tr>
         </thead>
         <tbody>
           {data.map((rowData) => (
-            <tr key={rowData.nim}>
+            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <td className="py-2 px-4 border-b">{rowData.nama}</td>
               <td className="py-2 px-4 border-b">{rowData.divisi}</td>
               <td className="py-2 px-4 border-b">{rowData.kategori}</td>
