@@ -9,6 +9,9 @@ const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
     const [dataid, setRowData] = useState();
+    const [barang, setBarang] = useState("");
+    const [jumlah, setJumlah] = useState("");
+    const [kondisi, setKondisi] = useState("");
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
@@ -18,7 +21,35 @@ const Dokumentasiadmin = () =>{
         { nama: 'tenda', jumlah: '12', kondisi: 'sedang',id:20 },
         // ... tambahkan data lainnya sesuai kebutuhan
       ];
+      const addlogistik = (e) => {
     
+        e.preventDefault();
+    
+       fetch('http://localhost:5000/logistik', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+            'Access-Control-Request-Method': 'GET, POST, DELETE, PUT, OPTIONS',
+        },
+        body: JSON.stringify({ "nama": barang,"qty":jumlah,"kondisi":kondisi })
+        
+    })
+    
+    .then(response => response.json())
+    .then(()=>{
+      if('secret'!="password"){
+            'setError'("You are not authorized")
+          }
+          else {
+            'navigate'("/photos")
+          }
+      
+     }) 
+    
+    };
       // State untuk menyimpan data yang dipilih untuk dihapus
       
     return (
@@ -31,13 +62,7 @@ const Dokumentasiadmin = () =>{
                 </div>
               <div className="flex flex-row gap-3 ml-64">
                        
-                        {/* <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
-                            <b className="text-2xl">Manajemen Dokumentasi </b>
-                            <span className="text-slate-600"></span>
-                            <button
-                    className="px-3 bg-blue-600 text-white rounded-xl py-2 self-end hover:bg-blue-700"
-                    onClick={() => setShowModal(true)}>Tambah Dokumentasi</button>
-                        </div> */}
+                       
                 <div className="  flex justify-between items-center flex-grow">
                     <div className="">
                     <b className="text-2xl">Tabel Logistik</b>
@@ -185,59 +210,43 @@ const Dokumentasiadmin = () =>{
               <div className="flex justify-center items-center">
       {/* Sebelah Kiri: Bagian Foto */}
       <div className="mr-8">
-        {/* Tambahkan logika untuk menampilkan foto */}
-        <img
-  src={lipu}
-  alt="Foto Profil"
-  className="w-32 h-32 object-cover "
-/>
 
-        {/* Input untuk mengunggah foto */}
-        
       </div>
 
       {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
-      <form onSubmit={'handleSubmit'}>
+      <form onSubmit={addlogistik}>
         <div className="flex flex-col">
-          <label className="mb-2">NIM</label>
+          <label className="mb-2">Nama barang</label>
           <input
             type="text"
-            name="nim"
-            value={'formValues.nim'}
-            onChange={'handleChange'}
+            name="barang"
+            value={barang}
+            onChange={(e) => setBarang(e.target.value)}
             className="border p-2 mb-2"
           />
 
-          <label className="mb-2">Nama</label>
+          <label className="mb-2">Jumlah</label>
           <input
-            type="text"
-            name="nama"
-            value={'formValues.nama'}
-            onChange={'handleChange'}
+            type="number"
+            name="jumlah"
+            value={jumlah}
+            onChange={(e) => setJumlah(e.target.value)}
             className="border p-2 mb-2"
           />
-
-          <label className="mb-2">Divisi</label>
+          <label className="mb-2">Kondisi</label>
           <input
             type="text"
-            name="divisi"
-            value={'formValues.divisi'}
-            onChange={'handleChange'}
+            name="kondisi"
+            value={kondisi}
+            onChange={(e) => setKondisi(e.target.value)}
             className="border p-2 mb-2"
-          />
-
-          <label className="mb-2">Status Jabatan</label>
-          <input
-            type="text"
-            name="statusJabatan"
-            value={'formValues.statusJabatan'}
-            onChange={'handleChange'}
-            className="border p-2 mb-4"
           />
 
           {/* Tombol Submit */}
           
         </div>
+        <input className="submit-btn" type="submit" value="Submit" data-testid="submit" />
+
       </form>
     </div>
                 <p class="text-sm text-gray-500">{''}</p>
