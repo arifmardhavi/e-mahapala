@@ -10,12 +10,25 @@ const Dokumentasiadmin = () =>{
     const [Modallihat, Setmodallihat] = useState(false);
     const [dataid, setRowData] = useState();
     const [barang, setBarang] = useState("");
+    const [logistik, setLogistik] = useState([]);
     const [jumlah, setJumlah] = useState("");
     const [kondisi, setKondisi] = useState("");
+    const [loading, setLoading] = useState(false);
+
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
+
+    useEffect(() => {
+      setLoading(false);
+      const url="http://localhost:5000/logistik"
+      fetch(url)
+    .then((response) => response.json()) 
+    .then((json) => setLogistik(json.data));
+    
+       }, []);
+       console.log(logistik.data)
     const data = [
         { nama: 'Perahuu', jumlah: '4', kondisi: 'baik',id:2 },
         { nama: 'tenda', jumlah: '12', kondisi: 'sedang',id:20 },
@@ -30,8 +43,6 @@ const Dokumentasiadmin = () =>{
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
             'Access-Control-Request-Method': 'GET, POST, DELETE, PUT, OPTIONS',
         },
         body: JSON.stringify({ "nama": barang,"qty":jumlah,"kondisi":kondisi })
@@ -53,7 +64,9 @@ const Dokumentasiadmin = () =>{
       // State untuk menyimpan data yang dipilih untuk dihapus
       
     return (
+      
       <div >
+        
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
                 <div className="bg-white rounded-xl p-5 flex flex-col items-start ml-64">
@@ -88,14 +101,15 @@ const Dokumentasiadmin = () =>{
           </tr>
         </thead>
         <tbody>
-          {data.map((rowData) => (
+               
+          {logistik.map((rowData) => (
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <td className="py-2 px-4 border-b">{rowData.nama}</td>
-              <td className="py-2 px-4 border-b">{rowData.jumlah}</td>
+              <td className="py-2 px-4 border-b">{rowData.qty}</td>
               <td className="py-2 px-4 border-b">{rowData.kondisi}</td>
               <td className="py-2 px-4 border-b">{
                 <div>
-                <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
+            <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
                 <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                 {Modallihat ? (
         <>
