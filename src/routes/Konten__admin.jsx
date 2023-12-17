@@ -184,20 +184,16 @@ const Dokumentasiadmin = () =>{
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
               <div class="mt-2">
               <div className="flex justify-center items-center">
-      {/* Sebelah Kiri: Bagian Foto */}
       <div className="mr-8">
-        {/* Tambahkan logika untuk menampilkan foto */}
         <img
   src={lipu}
   alt="Foto Profil"
   className="w-32 h-32 object-cover "
 />
 
-        {/* Input untuk mengunggah foto */}
         
       </div>
 
-      {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
       <form onSubmit={'handleSubmit'}>
         <div className="flex flex-col">
           <label className="mb-2">NIM</label>
