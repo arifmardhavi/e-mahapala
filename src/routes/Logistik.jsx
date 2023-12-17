@@ -11,38 +11,30 @@ const Dokumentasiadmin = () =>{
     const [loading, setLoading] = useState(true);
     const [dataid, setRowData] = useState();
     const [barang, setBarang] = useState("");
+    const [logistik, setLogistik] = useState([]);
     const [jumlah, setJumlah] = useState("");
     const [kondisi, setKondisi] = useState("");
+    const [loading, setLoading] = useState(false);
+
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
 
-    const apiKey = `http://localhost:4000/logistik`;
-    const Logistik = () =>{
-        const [logistikList, setLogistikList] = useState([]);
-      const [loading, setLoading] = useState(true);
-      const apiKey = process.env.REACT_APP_API_HOST;
+    useEffect(() => {
+      setLoading(false);
+      const url="http://localhost:5000/logistik"
+      fetch(url)
+    .then((response) => response.json()) 
+    .then((json) => setLogistik(json.data));
     
-      useEffect(() => {
-
-        fetch(apiKey)
-          .then((response) => response.json())
-          .then((data) => {
-            setLogistikList(data.results);
-            setLoading(false);
-          })
-          .catch((error) => {  
-            console.error('Error fetching data:', error);
-            setLoading(false);
-          });
-      }, []);
-    // const data = [
-    //     { nama: 'Perahuu', jumlah: '4', kondisi: 'baik',id:2 },
-    //     { nama: 'tenda', jumlah: '12', kondisi: 'sedang',id:20 },
-    //     // ... tambahkan data lainnya sesuai kebutuhan
-    //   ];
-
+       }, []);
+       console.log(logistik.data)
+    const data = [
+        { nama: 'Perahuu', jumlah: '4', kondisi: 'baik',id:2 },
+        { nama: 'tenda', jumlah: '12', kondisi: 'sedang',id:20 },
+        // ... tambahkan data lainnya sesuai kebutuhan
+      ];
       const addlogistik = (e) => {
     
         e.preventDefault();
@@ -52,8 +44,6 @@ const Dokumentasiadmin = () =>{
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:4000',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
             'Access-Control-Request-Method': 'GET, POST, DELETE, PUT, OPTIONS',
         },
         body: JSON.stringify({ "nama": barang,"qty":jumlah,"kondisi":kondisi })
@@ -75,7 +65,9 @@ const Dokumentasiadmin = () =>{
       // State untuk menyimpan data yang dipilih untuk dihapus
       
     return (
+      
       <div >
+        
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
                 <div className="bg-white rounded-xl p-5 flex flex-col items-start ml-64">
@@ -110,20 +102,16 @@ const Dokumentasiadmin = () =>{
           </tr>
         </thead>
         <tbody>
-          {Logistik.map((logistikList) => (
+               
+          {logistik.map((rowData) => (
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              {logistikList.map((logistikList, index) => (
-                <div key={index} className="losgis">
-                  <td className="py-2 px-4 border-b">{logistikList.nama}</td>
-                  <td className="py-2 px-4 border-b">{logistikList.jumlah}</td>
-                  <td className="py-2 px-4 border-b">{logistikList.kondisi}</td>
-                </div>
-
-              ))}
+              <td className="py-2 px-4 border-b">{rowData.nama}</td>
+              <td className="py-2 px-4 border-b">{rowData.jumlah}</td>
+              <td className="py-2 px-4 border-b">{rowData.kondisi}</td>
               <td className="py-2 px-4 border-b">{
                 <div>
-                <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
-                <button onClick={() =>  handleViewClick(logistikList) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
+            <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
+                <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                 {Modallihat ? (
         <>
         
