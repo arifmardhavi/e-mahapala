@@ -8,6 +8,7 @@ import { Link, useHref } from "react-router-dom"
 const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [dataid, setRowData] = useState();
     const [barang, setBarang] = useState("");
     const [jumlah, setJumlah] = useState("");
@@ -16,21 +17,42 @@ const Dokumentasiadmin = () =>{
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
-    const data = [
-        { nama: 'Perahuu', jumlah: '4', kondisi: 'baik',id:2 },
-        { nama: 'tenda', jumlah: '12', kondisi: 'sedang',id:20 },
-        // ... tambahkan data lainnya sesuai kebutuhan
-      ];
+
+    const apiKey = `http://localhost:4000/logistik`;
+    const Logistik = () =>{
+        const [logistikList, setLogistikList] = useState([]);
+      const [loading, setLoading] = useState(true);
+      const apiKey = process.env.REACT_APP_API_HOST;
+    
+      useEffect(() => {
+
+        fetch(apiKey)
+          .then((response) => response.json())
+          .then((data) => {
+            setLogistikList(data.results);
+            setLoading(false);
+          })
+          .catch((error) => {  
+            console.error('Error fetching data:', error);
+            setLoading(false);
+          });
+      }, []);
+    // const data = [
+    //     { nama: 'Perahuu', jumlah: '4', kondisi: 'baik',id:2 },
+    //     { nama: 'tenda', jumlah: '12', kondisi: 'sedang',id:20 },
+    //     // ... tambahkan data lainnya sesuai kebutuhan
+    //   ];
+
       const addlogistik = (e) => {
     
         e.preventDefault();
     
-       fetch('http://localhost:5000/logistik', {
+       fetch('http://localhost:4000/logistik', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': 'http://localhost:4000',
             'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
             'Access-Control-Request-Method': 'GET, POST, DELETE, PUT, OPTIONS',
         },
@@ -88,15 +110,20 @@ const Dokumentasiadmin = () =>{
           </tr>
         </thead>
         <tbody>
-          {data.map((rowData) => (
+          {Logistik.map((logistikList) => (
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <td className="py-2 px-4 border-b">{rowData.nama}</td>
-              <td className="py-2 px-4 border-b">{rowData.jumlah}</td>
-              <td className="py-2 px-4 border-b">{rowData.kondisi}</td>
+              {logistikList.map((logistikList, index) => (
+                <div key={index} className="losgis">
+                  <td className="py-2 px-4 border-b">{logistikList.nama}</td>
+                  <td className="py-2 px-4 border-b">{logistikList.jumlah}</td>
+                  <td className="py-2 px-4 border-b">{logistikList.kondisi}</td>
+                </div>
+
+              ))}
               <td className="py-2 px-4 border-b">{
                 <div>
                 <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
-                <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
+                <button onClick={() =>  handleViewClick(logistikList) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                 {Modallihat ? (
         <>
         
@@ -278,12 +305,12 @@ const Dokumentasiadmin = () =>{
           </tr>
         </thead>
         <tbody>
-          {data.map((rowData) => (
-            <tr key={rowData.nim}>
-              <td className="py-2 px-4 border-b">{rowData.nim}</td>
-              <td className="py-2 px-4 border-b">{rowData.nama}</td>
-              <td className="py-2 px-4 border-b">{rowData.divisi}</td>
-              <td className="py-2 px-4 border-b">{rowData.status}</td>
+          {Logistik.map((logistikList) => (
+            <tr key={logistikList.nim}>
+              <td className="py-2 px-4 border-b">{logistikList.nim}</td>
+              <td className="py-2 px-4 border-b">{logistikList.nama}</td>
+              <td className="py-2 px-4 border-b">{logistikList.divisi}</td>
+              <td className="py-2 px-4 border-b">{logistikList.status}</td>
             </tr>
           ))}
         </tbody>
@@ -298,5 +325,5 @@ const Dokumentasiadmin = () =>{
       </div>
       
     );
-  }
+  }}
   export default Dokumentasiadmin;

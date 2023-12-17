@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useEffect } from "react";
 import { useState } from "react";
 import Sidebar from "../components/Dashboard/Sidebar";
@@ -9,6 +10,7 @@ const EditAnggota = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
     const [dataid, setRowData] = useState();
+    const [npm, setNpm] = useState("");
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
@@ -18,9 +20,41 @@ const EditAnggota = () =>{
         { nim: '20081010198', nama: 'Jane Doe', divisi: 'Marketing', status: 'Non-Aktif' ,id:89},
         // ... tambahkan data lainnya sesuai kebutuhan
       ];
+      const addAnggota = (e) => {
     
-      // State untuk menyimpan data yang dipilih untuk dihapus
+        e.preventDefault();
+    
+       fetch('http://localhost:4000/Users', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          "npm": npm,
+          "nama":nama,
+          "tanggal_lahir":tangal_lahir,
+          "telepon":telepon,
+          "alamat":alamat,
+          "status":statuss,
+          "createdAt":det,
+          "updatedAt":new Date,
+          "secret":secret })
+        
+    })
+    
+    .then(response => response.json())
+    .then(()=>{
+      if(secret!="password"){
+            setError("You are not authorized")
+          }
+          else {
+            navigate("/photos")
+          }
       
+     })
+      // State untuk menyimpan data yang dipilih untuk dihapus
+    };
     return (
       <div>
         
@@ -92,30 +126,6 @@ const EditAnggota = () =>{
 
                       {Modallihat ? (
             <>
-          {/* <div className="bg-white rounded-xl min-h-[500px] overflow-y-auto h-[500px]">
-            <table className="px-3 py-2">
-              <thead>
-                <tr>
-                  <th className="py-2 border-b w-64 text-left px-5">NIM</th>
-                  <th className="py-2 border-b w-64 text-left px-5">Nama</th>
-                  <th className="py-2 border-b w-64 text-left px-5">Divisi</th>
-                  <th className="py-2 border-b w-64 text-left px-5">Status</th>
-                  <th className="py-2 border-b w-64 text-left px-5">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((rowData) => (
-                  <tr key={rowData.nim}>
-                    <td className="py-2 px-4 border-b">{rowData.nim}</td>
-                    <td className="py-2 px-4 border-b">{rowData.nama}</td>
-                    <td className="py-2 px-4 border-b">{rowData.divisi}</td>
-                    <td className="py-2 px-4 border-b">{rowData.status}</td>
-                    <td className="py-2 px-4 border-b">{
-                      <div>
-                      <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
-                      <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
-                      {Modallihat ? (
-              <> */}
         
           <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -137,13 +147,13 @@ const EditAnggota = () =>{
                                 {/* Input untuk mengunggah foto */}
                               </div>
                               {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
-                              <form onSubmit={'handleSubmit'}>
+                              <form onSubmit={addAnggota}>
                                 <div className="flex flex-col">
-                                  <label className="mb-2">NIM</label>
+                                  <label className="mb-2">NPM</label>
                                     <input
                                       type="text"
                                       name="nim"
-                                      value={dataid.nim}
+                                      value={npm}
                                       onChange={'handleChange'}
                                       className="border p-2 mb-2"
                                     />
@@ -151,26 +161,35 @@ const EditAnggota = () =>{
                                   <label className="mb-2">Nama</label>
                                     <input
                                       type="text"
-                                      name="nim"
-                                      value={dataid.nama}
+                                      name="nama"
+                                      value={nama}
                                       onChange={'handleChange'}
                                       className="border p-2 mb-2"
                                     />
 
-                                  <label className="mb-2">Divisi</label>
+                                  <label className="mb-2">TTL</label>
                                     <input
                                       type="text"
-                                      name="nim"
-                                      value={dataid.divisi}
+                                      name="tanggal_lahir"
+                                      value={tanggal_lahir}
                                       onChange={'handleChange'}
                                       className="border p-2 mb-2"
                                     />
 
-                                  <label className="mb-2">Status</label>
+                                  <label className="mb-2">Telepon</label>
                                     <input
                                       type="text"
-                                      name="nim"
-                                      value={dataid.status}
+                                      name="telepon"
+                                      value={telepon}
+                                      onChange={'handleChange'}
+                                      className="border p-2 mb-2"
+                                    />
+
+                                  <label className="mb-2">Alamat</label>
+                                    <input
+                                      type="text"
+                                      name="alamat"
+                                      value={alamat}
                                       onChange={'handleChange'}
                                       className="border p-2 mb-2"
                                     />
@@ -236,7 +255,7 @@ const EditAnggota = () =>{
       </div>
 
       {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
-      <form onSubmit={'handleSubmit'}>
+      <form onSubmit={addAnggota}>
         <div className="flex flex-col">
         <label className="mb-2">Foto</label>
         <input className="mb-2"
@@ -248,8 +267,8 @@ const EditAnggota = () =>{
           <label className="mb-2">NIM</label>
           <input
             type="text"
-            name="nim"
-            value={'formValues.nim'}
+            name="npm"
+            value={'npm'}
             onChange={'handleChange'}
             className="border p-2 mb-2"
           />
