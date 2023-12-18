@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Sidebar from "../components/Dashboard/Sidebar";
 import lipu from "../images/review/1.png";
-import { Link, useHref } from "react-router-dom"
 
 
 const EditAnggota = () =>{
@@ -65,7 +64,7 @@ const EditAnggota = () =>{
           </div>
           {showModal ? (
           <>
-            <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">
+            <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal= "true">
               <div class="fixed inset-0 z-10 overflow-y-auto pt-32">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
                   <div class="relative transform  rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg min-h-20">
@@ -235,15 +234,15 @@ const EditAnggota = () =>{
                           </td>
                           <td class="px-6 py-4">
                             <div>
-                          <a href="#" class="hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center">View</a>
+                          <a href="#view" class="hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center">View</a>
                           <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}>Edit</button>
-                          <a href="#" class="hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center ">Delete</a>
+                          <a href="#delete" class="hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center ">Delete</a>
                           
 
                                 {Modallihat ? (
                       <>
                   
-                    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">
+                    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
                         <div class="fixed inset-0 z-10 overflow-y-auto pt-32">
                           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
