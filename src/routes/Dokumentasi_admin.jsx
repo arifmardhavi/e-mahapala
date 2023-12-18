@@ -8,16 +8,20 @@ import { Link, useHref } from "react-router-dom"
 const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
+    const [dokumentasi, setDokumentasi] = useState([]);
     const [dataid, setRowData] = useState();
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
-    const data = [
-        { Gambar: '123.jpg', nama: 'John Doe', kategori: 'lomba', divisi: 'kapal' , status: 'anggota', tanggalupload: '02/09/2002'},
-        { Gambar: '234.jpg', nama: 'Jane Doe', kategori: 'kegiatan rutin', divisi: 'kapal' , status: 'anggota', tanggalupload: '02/09/2002'},
-        // ... tambahkan data lainnya sesuai kebutuhan
-      ];
+    useEffect(() => {
+      
+      const url="http://localhost:4000/dokumentasi"
+      fetch(url)
+    .then((response) => response.json()) 
+    .then((json) => setDokumentasi(json.data));
+    
+       }, []);
     
       // State untuk menyimpan data yang dipilih untuk dihapus
       
@@ -65,14 +69,14 @@ const Dokumentasiadmin = () =>{
           </tr>
         </thead>
         <tbody>
-          {data.map((rowData) => (
+          {dokumentasi.map((rowData) => (
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <td className="py-2 px-4 border-b">{rowData.Gambar}</td>
+              <td className="py-2 px-4 border-b">{rowData.berkas}</td>
               <td className="py-2 px-4 border-b">{rowData.nama}</td>
               <td className="py-2 px-4 border-b">{rowData.kategori}</td>
               <td className="py-2 px-4 border-b">{rowData.divisi}</td>
               <td className="py-2 px-4 border-b">{rowData.status}</td>
-              <td className="py-2 px-4 border-b">{rowData.tanggalupload}</td>
+              <td className="py-2 px-4 border-b">{rowData.tanggal}</td>
               <td className="py-2 px-4 border-b">{
                 <div>
                 <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
@@ -297,7 +301,7 @@ const Dokumentasiadmin = () =>{
           </tr>
         </thead>
         <tbody>
-          {data.map((rowData) => (
+          {dokumentasi.map((rowData) => (
             <tr key={rowData.nim}>
               <td className="py-2 px-4 border-b">{rowData.nim}</td>
               <td className="py-2 px-4 border-b">{rowData.nama}</td>
