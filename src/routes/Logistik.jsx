@@ -22,7 +22,7 @@ const Dokumentasiadmin = () =>{
 const setHapus1 = (e)=>{
 
   console.log(e)
-  fetch(`http://localhost:5000/logistik/${id}`, {
+  fetch(`http://localhost:5000/logistik/${e}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -36,13 +36,20 @@ const setHapus1 = (e)=>{
 const editLogistik = (e) => {
   e.preventDefault();
   // TODO: answer here
-  fetch(`http://localhost:5000/logistik/${id}`,{
-    method:"PATCH",
-    headers:{
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ "nama": ubahbarang,"qty":ubahjumlah,"kondisi":ubahkondisi }),
-  })
+  fetch(`http://localhost:5000/logistik/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": 'http://localhost:3000',
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization, Access-Control-Allow-Headers, X-Requested-With',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH'},
+            body: JSON.stringify({ "nama": ubahbarang,"qty":ubahjumlah,"kondisi":ubahkondisi })
+            
+          })
+          .then(response => response.json())
+          alert('data berhasil ditambahkan');
+          window.location.reload();
 };
 
     const handleViewClick = (data) => {
@@ -71,7 +78,7 @@ const editLogistik = (e) => {
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": 'http://localhost:3000',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization, Access-Control-Allow-Headers, X-Requested-With',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'},
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH'},
             body: JSON.stringify({ "nama": barang,"qty":jumlah,"kondisi":kondisi })
             
           })
