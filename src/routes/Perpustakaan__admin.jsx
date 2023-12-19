@@ -9,18 +9,60 @@ const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
     const [dataid, setRowData] = useState();
-    const [idberkas, setIdberkas] = useState();
+    const [id, setId] = useState();
     const [nama, setNama] = useState("");
     const [divisi, setDivisi] = useState("");
     const [kategori, setKategori] = useState("");
-    const [namaberkas, setNamaberkas] = useState("");
     const [berkas, setBerkas] = useState(null);
+    const [ubahnama, setubahNama] = useState("");
+    const [ubahdivisi, setubahDivisi] = useState("");
+    const [ubahkategori, setubahKategori] = useState("");
+    const [ubahberkas, setubahBerkas] = useState(null);
     const [Perpustakaan, setPerpustakaan] = useState([]);
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
     const [file, setFile] = useState(null);
+
+    const editperpustakaan = (e) => {
+      e.preventDefault();
+      try{
+        const formData = new FormData();
+          formData.append("nama", ubahnama);
+          formData.append("divisi", ubahdivisi);
+          formData.append("kategori", ubahkategori);
+          formData.append("berkas", ubahberkas);
+
+          fetch(`http://localhost:4000/perpustakaan/${id}`, {
+            method: 'PATCH' ,
+            body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            alert(id);
+            alert('Data berhasil diupdate');
+            window.location.reload();
+            // Lakukan tindakan lain jika diperlukan setelah pengunggahan berhasil
+          })
+          .catch(error => {
+            console.error('Gagal mengirim data:', error);
+            alert('Gagal mengirim data');
+          });
+
+      }catch (error) {
+        console.error('Gagal mengirim data:', error);
+        alert('Gagal mengirim data');
+      }
+
+    };
+
+    const handleFileChange1 = (e) => {
+      const file = e.target.files[0];
+      setubahBerkas(file);
+      console.log(ubahberkas)
+    };
 
     const handleFileChange = (e) => {
       const file = e.target.files[0];
@@ -102,9 +144,8 @@ const Dokumentasiadmin = () =>{
       <Sidebar/>
       <div className="flex flex-row gap-10 ml-64">
                         
-                        <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
-                        <span className="text-slate-600">Management Berkas Mahapala</span>
-                        <b className="text-2xl">55{''}</b>      
+                        <div className="bg-white rounded-xl p-5 flex-grow gap-1">
+                        <b className="text-slate-600">Management Berkas Mahapala</b>  
                         </div>
 
                         <div className="bg-white rounded-xl p-5 flex flex-col items-start flex-grow gap-1">
@@ -163,93 +204,91 @@ const Dokumentasiadmin = () =>{
               </td>
               <td className="py-2 px-4 border-b">{
                 <div>
-                <button onClick={(e) => downloadFile(rowData.id_logistik)} className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</button>
                 <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                 {Modallihat ? (
-        <>
-        
-          <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <>
+                <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">       
+                  <div class="fixed inset-0 z-10 overflow-y-auto pt-32">
+                    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
+                      <div class="relative transform  rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg min-h-20">
+                        <form onSubmit={editperpustakaan}>
+                          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                              <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <div class="mt-2">
+                                  <div className="flex justify-center items-center">
+                                        <div className="flex flex-col w-[26.5rem]">
+                                          <label className="mb-2">Nama Perpustakaan</label>
+                                          <input
+                                            type="text"
+                                            name="nama"
+                                            placeholder={dataid.nama}
+                                            value={ubahnama}
+                                            onChange={(e) => setubahNama(e.target.value)}
+                                            className="border p-2 mb-2"
+                                          />
 
-  <div class="fixed inset-0 z-10 overflow-y-auto pt-32">
-    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
-      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg min-h-20">
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div class="sm:flex sm:items-start">
-            
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <div class="mt-2">
-              <div className="flex justify-center items-center">
-      {/* Sebelah Kiri: Bagian Foto */}
-      <div className="mr-8">
-        {/* Tambahkan logika untuk menampilkan foto */}
-        <img
-  src={lipu}
-  alt="Foto Profil"
-  className="w-32 h-32 object-cover "
-/>
+                                          <label className="mb-2">Divisi</label>
+                                          <input
+                                            type="number"
+                                            name="divisi"
+                                            placeholder={dataid.divisi}
+                                            value={ubahdivisi}
+                                            onChange={(e) => setubahDivisi(e.target.value)}
+                                            className="border p-2 mb-2"
+                                          />
+                                          <label className="mb-2">Kategori</label>
+                                          <input 
+                                          type="number" 
+                                          name="kategori" 
+                                          placeholder={dataid.kategori}
+                                          value={ubahkategori}
+                                          onChange={(e) => setubahKategori(e.target.value)} 
+                                          className="border p-2 mb-2"
+                                          />
+                                          <label className="mb-2">Berkas</label>
+                                          <input 
+                                          type="file" 
+                                          name="berkas" 
+                                          //value={berkas} 
+                                          accept=".pdf"
+                                          onChange={handleFileChange1}
 
-        {/* Input untuk mengunggah foto */}
-        
-      </div>
+                                          className="border p-2 mb-2"
+                                          />
 
-      {/* Sebelah Kanan: Form NIM, Nama, Divisi, Status Jabatan */}
-      <form onSubmit={'handleSubmit'}>
-        <div className="flex flex-col">
-          <label className="mb-2">Judul</label>
-          <input
-            type="text"
-            name="nim"
-            value={dataid.nama}
-            onChange={'handleChange'}
-            className="border p-2 mb-2"
-          />
+                                          {/* Tombol Submit */}
+                                          
+                                        </div>
+                                        {/* <input className="submit-btn" type="submit" value="Submit" data-testid="submit" /> */}
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            <button onClick={() => setId(dataid.id_perpustakaan)}
+                            type="submit"
+                            class="inline-flex w-full justify-center rounded-md border 
+                            border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm 
+                            hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 
+                            sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
+                            <button type="button" onClick={() => Setmodallihat(false)}
+                            class="inline-flex w-full justify-center rounded-md border 
+                            border-transparent bg-gray-800 px-4 py-2 text-base font-medium text-white shadow-sm 
+                            hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 
+                            sm:ml-3 sm:w-auto sm:text-sm">close</button>
 
-      <label className="mb-2">Divisi</label>
-          <input
-            type="text"
-            name="nim"
-            value={dataid.divisi}
-            onChange={'handleChange'}
-            className="border p-2 mb-2"
-          />
-      <label className="mb-2">Kategori</label>
-          <input
-            type="text"
-            name="nim"
-            value={dataid.kategori}
-            onChange={'handleChange'}
-            className="border p-2 mb-2"
-          />
-
-         
-
-          {/* Tombol Submit */}
-          
-        </div>
-      </form>
-    </div>
-                <p class="text-sm text-gray-500">{''}</p>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <button type="button" onClick={() => Setmodallihat(false)}
-          class="inline-flex w-full justify-center rounded-md border 
-          border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm 
-          hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 
-          sm:ml-3 sm:w-auto sm:text-sm">Submit</button>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-        </>
-      ) : null}
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  
+                </>
+                ) : null}
                 <button onClick={(e) => setHapus1(rowData.id_perpustakaan)}className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</button>
                 </div>
 
@@ -293,7 +332,7 @@ const Dokumentasiadmin = () =>{
                                                     onChange={(e) => setDivisi(e.target.value)}
                                                     className="border p-2 mb-2"
                                                   />
-                                                  <label className="mb-2">Kondisi</label>
+                                                  <label className="mb-2">Kategori</label>
                                                   <input 
                                                   type="number" 
                                                   name="kategori" 
@@ -301,7 +340,7 @@ const Dokumentasiadmin = () =>{
                                                   onChange={(e) => setKategori(e.target.value)} 
                                                   className="border p-2 mb-2"
                                                   />
-
+                                                  <label className="mb-2">Berkas</label>
                                                   <input 
                                                   type="file" 
                                                   name="berkas" 

@@ -19,24 +19,25 @@ const Dokumentasiadmin = () =>{
     const [ubahkondisi, setubahKondisi] = useState("");
     const [hapus, setHapus] = useState("");
     const [loading, setLoading] = useState(false);
-const setHapus1 = (e)=>{
 
-  console.log(e)
-  fetch(`http://localhost:4000/logistik/${e}`, {
-    method: "DELETE",
-  })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error(`Gagal menghapus item dengan e ${e}:`, error);
-    });
-    alert('data berhasil dihapus');
-    window.location.reload();
-}
+    const setHapus1 = (e)=>{
+    
+      console.log(e)
+      fetch(`http://localhost:4000/logistik/${e}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error(`Gagal menghapus item dengan e ${e}:`, error);
+        });
+        alert('data berhasil dihapus');
+        window.location.reload();
+    }
 
-const editLogistik = (e) => {
-  e.preventDefault();
-  // TODO: answer here
-  fetch(`http://localhost:4000/logistik/${id}`, {
+    const editLogistik = (e) => {
+      e.preventDefault();
+      // TODO: answer here
+      fetch(`http://localhost:4000/logistik/${id}`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
@@ -50,7 +51,7 @@ const editLogistik = (e) => {
           .then(response => response.json())
           alert('data berhasil diupdate');
           window.location.reload();
-};
+    };
 
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
