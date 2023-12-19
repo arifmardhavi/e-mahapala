@@ -37,7 +37,7 @@ const Dokumentasiadmin = () =>{
     const setHapus1 = (e)=>{
 
       console.log(e)
-      fetch(`http://localhost:5000/perpustakaan/${e}`, {
+      fetch(`http://localhost:4000/perpustakaan/${e}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -54,7 +54,7 @@ const Dokumentasiadmin = () =>{
 
     useEffect(() => {
       
-      const url="http://localhost:5000/perpustakaan"
+      const url="http://localhost:4000/perpustakaan"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setPerpustakaan(json.data));
@@ -71,7 +71,7 @@ const Dokumentasiadmin = () =>{
           formData.append("kategori", kategori);
           formData.append("berkas", berkas);
     
-          fetch('http://localhost:5000/perpustakaan', {
+          fetch('http://localhost:4000/perpustakaan', {
             method: 'POST',
             body: formData,
           })
