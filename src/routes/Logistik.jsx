@@ -9,16 +9,20 @@ const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
     const [dataid, setRowData] = useState();
+    const [id, setId] = useState();
     const [barang, setBarang] = useState("");
+    const [ubahbarang, setubahBarang] = useState("");
     const [logistik, setLogistik] = useState([]);
     const [jumlah, setJumlah] = useState("");
+    const [ubahjumlah, setubahJumlah] = useState("");
     const [kondisi, setKondisi] = useState("");
+    const [ubahkondisi, setubahKondisi] = useState("");
     const [hapus, setHapus] = useState("");
     const [loading, setLoading] = useState(false);
 const setHapus1 = (e)=>{
 
   console.log(e)
-  fetch(`http://localhost:4000/logistik/${e}`, {
+  fetch(`http://localhost:5000/logistik/${id}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -29,6 +33,18 @@ const setHapus1 = (e)=>{
     window.location.reload();
 }
 
+const editLogistik = (e) => {
+  e.preventDefault();
+  // TODO: answer here
+  fetch(`http://localhost:5000/logistik/${id}`,{
+    method:"PATCH",
+    headers:{
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ "nama": ubahbarang,"qty":ubahjumlah,"kondisi":ubahkondisi }),
+  })
+};
+
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
@@ -37,7 +53,7 @@ const setHapus1 = (e)=>{
     useEffect(() => {
       
       setLoading(false);
-      const url="http://localhost:4000/logistik"
+      const url="http://localhost:5000/logistik"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setLogistik(json.data));
@@ -48,7 +64,7 @@ const setHapus1 = (e)=>{
         // setShowModal(false);
         e.preventDefault();
         try{
-          fetch('http://localhost:4000/logistik', {
+          fetch('http://localhost:5000/logistik', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -121,7 +137,7 @@ const setHapus1 = (e)=>{
                               <div class="fixed inset-0 z-10 overflow-y-auto pt-32">
                                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
                                   <div class="relative transform  rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg min-h-20">
-                                    <form onSubmit={'handleSubmit'}>
+                                    <form onSubmit={editLogistik}>
                                       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                         <div class="sm:flex sm:items-start">
                                           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -132,8 +148,9 @@ const setHapus1 = (e)=>{
                                                       <input
                                                         type="text"
                                                         name="barang"
-                                                        value={dataid.nama}
-                                                        onChange={'handleChange'}
+                                                        placeholder={dataid.nama}
+                                                        value={ubahbarang}
+                                                        onChange={(e) => setubahBarang(e.target.value)}
                                                         className="border p-2 mb-2"
                                                       />
 
@@ -141,16 +158,18 @@ const setHapus1 = (e)=>{
                                                       <input
                                                         type="number"
                                                         name="jumlah"
-                                                        value={dataid.qty}
-                                                        onChange={'handleChange'}
+                                                        placeholder={dataid.qty}
+                                                        value={ubahjumlah}
+                                                        onChange={(e) => setubahJumlah(e.target.value)}
                                                         className="border p-2 mb-2"
                                                       />
                                                       <label className="mb-2">Kondisi</label>
                                                       <input 
                                                       type="text" 
                                                       name="kondisi" 
-                                                      value={dataid.kondisi} 
-                                                      onChange={'handleChange'}
+                                                      placeholder={dataid.kondisi}
+                                                      value={ubahkondisi} 
+                                                      onChange={(e) => setubahKondisi(e.target.value)}
                                                       className="border p-2 mb-2"
                                                       />
 
@@ -165,7 +184,7 @@ const setHapus1 = (e)=>{
                                         </div>
                                       </div>
                                       <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                        <button 
+                                        <button onClick={() => setId(dataid.id_logistik)}
                                         type="submit"
                                         class="inline-flex w-full justify-center rounded-md border 
                                         border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm 

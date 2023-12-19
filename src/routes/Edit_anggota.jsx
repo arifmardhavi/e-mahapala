@@ -26,7 +26,7 @@ const EditAnggota = () =>{
     useEffect(() => {
       
       // setLoading(false);
-      const url="http://localhost:4000/users"
+      const url="http://localhost:5000/users"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setUser(json.data));
@@ -36,7 +36,7 @@ const EditAnggota = () =>{
         // setShowModal(false);
         e.preventDefault();
         try{
-          fetch('http://localhost:4000/users', {
+          fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

@@ -12,16 +12,21 @@ const Dokumentasiadmin = () =>{
     const [nama, setNama] = useState("");
     const [divisi, setDivisi] = useState("");
     const [kategori, setKategori] = useState("");
-    const [berkas, setBerkas] = useState("");
+    const [berkas, setBerkas] = useState(null);
     const [Perpustakaan, setPerpustakaan] = useState([]);
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
+    const [file, setFile] = useState(null);
 
+    const handleFileChange = (event) => {
+      setBerkas(event.target.files[0]);
+      console.log(berkas)
+    };
     useEffect(() => {
       
-      const url="http://localhost:4000/perpustakaan"
+      const url="http://localhost:5000/perpustakaan"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setPerpustakaan(json.data));
@@ -32,7 +37,7 @@ const Dokumentasiadmin = () =>{
         // setShowModal(false);
         e.preventDefault();
         try{
-          fetch('http://localhost:4000/perpustakaan', {
+          fetch('http://localhost:5000/perpustakaan', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -45,15 +50,15 @@ const Dokumentasiadmin = () =>{
           })
         
           .then(response => response.json())
-        
+          console.log(berkas)
       
           alert('data berhasil ditambahkan');
-          window.location.reload();
+          //window.location.reload();
         }catch (error) {
           console.error('Gagal mengirim data:', error);
         }
       };
-
+      
     
     
       // State untuk menyimpan data yang dipilih untuk dihapus
@@ -247,7 +252,7 @@ const Dokumentasiadmin = () =>{
                                                     className="border p-2 mb-2"
                                                   />
 
-                                                  <label className="mb-2">Jumlah</label>
+                                                  <label className="mb-2">Divisi</label>
                                                   <input
                                                     type="number"
                                                     name="divisi"
@@ -265,7 +270,7 @@ const Dokumentasiadmin = () =>{
                                                   />
 
                                                   <input 
-                                                  type="file" 
+                                                  type="text" 
                                                   name="berkas" 
                                                   value={berkas} 
                                                   onChange={(e) => setBerkas(e.target.value)} 
