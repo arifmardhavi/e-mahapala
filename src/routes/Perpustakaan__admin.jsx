@@ -9,9 +9,11 @@ const Dokumentasiadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
     const [dataid, setRowData] = useState();
+    const [idberkas, setIdberkas] = useState();
     const [nama, setNama] = useState("");
     const [divisi, setDivisi] = useState("");
     const [kategori, setKategori] = useState("");
+    const [namaberkas, setNamaberkas] = useState("");
     const [berkas, setBerkas] = useState(null);
     const [Perpustakaan, setPerpustakaan] = useState([]);
     const handleViewClick = (data) => {
@@ -20,10 +22,36 @@ const Dokumentasiadmin = () =>{
     };
     const [file, setFile] = useState(null);
 
-    const handleFileChange = (event) => {
-      setBerkas(event.target.files[0]);
+    const handleFileChange = (e) => {
+      const file = e.target.files[0];
+      setBerkas(file);
       console.log(berkas)
     };
+
+
+    const downloadFile = async (e) => {
+      //const fileId = 9; // Gantilah dengan ID file yang sesuai
+      console.log(e)}
+
+
+    const setHapus1 = (e)=>{
+
+      console.log(e)
+      fetch(`http://localhost:5000/perpustakaan/${e}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error(`Gagal menghapus item dengan e ${e}:`, error);
+        });
+        alert('data berhasil dihapus');
+        window.location.reload();
+    }
+
+
+    
+
+
     useEffect(() => {
       
       const url="http://localhost:5000/perpustakaan"
@@ -33,29 +61,34 @@ const Dokumentasiadmin = () =>{
     
        }, []);
 
-      const addperpustakaan = (e) => {
-        // setShowModal(false);
+       const addperpustakaan = (e) => {
         e.preventDefault();
-        try{
+    
+        try {
+          const formData = new FormData();
+          formData.append("nama", nama);
+          formData.append("divisi", divisi);
+          formData.append("kategori", kategori);
+          formData.append("berkas", berkas);
+    
           fetch('http://localhost:5000/perpustakaan', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": 'http://localhost:3000',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization, Access-Control-Allow-Headers, X-Requested-With',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'},
-            body: JSON.stringify({ "nama": nama,"divisi":divisi, "kategori":kategori,"berkas":berkas })
-            
+            body: formData,
           })
-        
-          .then(response => response.json())
-          console.log(berkas)
-      
-          alert('data berhasil ditambahkan');
-          //window.location.reload();
-        }catch (error) {
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              alert('Data berhasil ditambahkan');
+              window.location.reload();
+              // Lakukan tindakan lain jika diperlukan setelah pengunggahan berhasil
+            })
+            .catch(error => {
+              console.error('Gagal mengirim data:', error);
+              alert('Gagal mengirim data');
+            });
+        } catch (error) {
           console.error('Gagal mengirim data:', error);
+          alert('Gagal mengirim data');
         }
       };
       
@@ -130,7 +163,7 @@ const Dokumentasiadmin = () =>{
               </td>
               <td className="py-2 px-4 border-b">{
                 <div>
-                <Link to="/" className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</Link>
+                <button onClick={(e) => downloadFile(rowData.id_logistik)} className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</button>
                 <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                 {Modallihat ? (
         <>
@@ -217,7 +250,7 @@ const Dokumentasiadmin = () =>{
 </div>
         </>
       ) : null}
-                <Link to="/" className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</Link>
+                <button onClick={(e) => setHapus1(rowData.id_perpustakaan)}className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</button>
                 </div>
 
               }</td>
@@ -270,10 +303,12 @@ const Dokumentasiadmin = () =>{
                                                   />
 
                                                   <input 
-                                                  type="text" 
+                                                  type="file" 
                                                   name="berkas" 
-                                                  value={berkas} 
-                                                  onChange={(e) => setBerkas(e.target.value)} 
+                                                  //value={berkas} 
+                                                  accept=".pdf"
+                                                  onChange={handleFileChange}
+
                                                   className="border p-2 mb-2"
                                                   />
 
