@@ -19,24 +19,25 @@ const Dokumentasiadmin = () =>{
     const [ubahkondisi, setubahKondisi] = useState("");
     const [hapus, setHapus] = useState("");
     const [loading, setLoading] = useState(false);
-const setHapus1 = (e)=>{
 
-  console.log(e)
-  fetch(`http://localhost:5000/logistik/${e}`, {
-    method: "DELETE",
-  })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error(`Gagal menghapus item dengan e ${e}:`, error);
-    });
-    alert('data berhasil dihapus');
-    window.location.reload();
-}
+    const setHapus1 = (e)=>{
+    
+      console.log(e)
+      fetch(`http://localhost:4000/logistik/${e}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error(`Gagal menghapus item dengan e ${e}:`, error);
+        });
+        alert('data berhasil dihapus');
+        window.location.reload();
+    }
 
-const editLogistik = (e) => {
-  e.preventDefault();
-  // TODO: answer here
-  fetch(`http://localhost:5000/logistik/${id}`, {
+    const editLogistik = (e) => {
+      e.preventDefault();
+      // TODO: answer here
+      fetch(`http://localhost:4000/logistik/${id}`, {
             method: 'PATCH',
             headers: {
                 'Accept': 'application/json',
@@ -48,9 +49,9 @@ const editLogistik = (e) => {
             
           })
           .then(response => response.json())
-          alert('data berhasil ditambahkan');
+          alert('data berhasil diupdate');
           window.location.reload();
-};
+    };
 
     const handleViewClick = (data) => {
       Setmodallihat(true); // Menampilkan modal
@@ -60,18 +61,19 @@ const editLogistik = (e) => {
     useEffect(() => {
       
       setLoading(false);
-      const url="http://localhost:5000/logistik"
+      const url="http://localhost:4000/logistik"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setLogistik(json.data));
     
        }, []);
        console.log(logistik.data)
+
       const addlogistik = (e) => {
         // setShowModal(false);
         e.preventDefault();
         try{
-          fetch('http://localhost:5000/logistik', {
+          fetch('http://localhost:4000/logistik', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -82,10 +84,7 @@ const editLogistik = (e) => {
             body: JSON.stringify({ "nama": barang,"qty":jumlah,"kondisi":kondisi })
             
           })
-        
           .then(response => response.json())
-        
-      
           alert('data berhasil ditambahkan');
           window.location.reload();
         }catch (error) {
@@ -93,11 +92,8 @@ const editLogistik = (e) => {
         }
       };
       // State untuk menyimpan data yang dipilih untuk dihapus
-      
     return (
-      
       <div >
-        
       <div className="flex flex-col gap-3 bg-gray-300  lg:p-12 lg:py-6 overflow-y">
         <Sidebar/>
               <div className="bg-white rounded-xl p-5 flex flex-col items-start ml-64">
@@ -225,7 +221,7 @@ const editLogistik = (e) => {
                     
         {showModal ? (
         <>
-          <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true ">
+          <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             
             <div class="fixed inset-0 z-10 overflow-y-auto pt-32">
               <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">

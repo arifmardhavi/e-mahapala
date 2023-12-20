@@ -5,7 +5,7 @@ import lipu from "../images/review/1.png";
 import { Link, useHref } from "react-router-dom";
 
 
-const Dokumentasiadmin = () =>{
+const Blogadmin = () =>{
     const [showModal, setShowModal] = useState(false);
     const [Modallihat, Setmodallihat] = useState(false);
     const [dokumentasi, setDokumentasi] = useState([]);
@@ -30,39 +30,38 @@ const Dokumentasiadmin = () =>{
       setRowData(data); // Mengatur rowData dengan data yang sesua
     };
 
-    const setHapusDokumen = (e) => {
-      console.log(e)
-      fetch(`http://localhost:5000/dokumentasi/${e}`, {
-        method: "DELETE",
-      })
-      .then((response) => response.json())
-      .catch((error) => {
-        console.error(`Gagal menghapus item dengan e ${e}:`, error);
-      });
-      alert('data berhasil dihapus');
-      window.location.reload();
-    }
+    const setHapus1 = (e)=>{
+    
+        console.log(e)
+        fetch(`http://localhost:5000/berita/${e}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .catch((error) => {
+            console.error(`Gagal menghapus item dengan e ${e}:`, error);
+          });
+          alert('data berhasil dihapus');
+          window.location.reload();
+      }
+
 
     const editDokumen = (e) => {
       e.preventDefault();
       try{
         const formData = new FormData();
-          formData.append("nama", ubahnama);
-          formData.append("divisi", ubahdivisi);
-          formData.append("kategori", ubahkategori);
-          formData.append("berkas", ubahberkas);
-          formData.append("status", ubahsetatus);
-          formData.append("tanggal", ubahtanggal);
+          formData.append("judul", nama);
+          formData.append("deskripsi", kategori);
+          formData.append("gambar", berkas);
 
-          fetch(`http://localhost:5000/dokumentasi/${id}`, {
-            method: 'PATCH' ,
+          fetch(`http://localhost:5000/berita/${id}`, {
+            method: 'PATCH',
             body: formData,
           })
+        
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            alert(id);
-            alert('Data berhasil diupdate');
+            alert('Data berhasil ditambahkan');
             window.location.reload();
             // Lakukan tindakan lain jika diperlukan setelah pengunggahan berhasil
           })
@@ -93,7 +92,7 @@ const Dokumentasiadmin = () =>{
 
     useEffect(() => {
       
-      const url="http://localhost:5000/dokumentasi"
+      const url="http://localhost:5000/berita"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setDokumentasi(json.data));
@@ -105,14 +104,11 @@ const Dokumentasiadmin = () =>{
         e.preventDefault();
         try{
           const formData = new FormData();
-          formData.append("nama", nama);
-          formData.append("divisi", divisi);
-          formData.append("kategori", kategori);
-          formData.append("berkas", berkas);
-          formData.append("status", setatus);
-          formData.append("tanggal", tanggal);
+          formData.append("judul", nama);
+          formData.append("deskripsi", kategori);
+          formData.append("gambar", berkas);
 
-          fetch('http://localhost:5000/dokumentasi', {
+          fetch('http://localhost:5000/berita', {
             method: 'POST',
             body: formData,
           })
@@ -141,17 +137,17 @@ const Dokumentasiadmin = () =>{
       <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
         <Sidebar/>
         <div className="bg-white rounded-xl p-3 flex flex-col text-center ml-64">
-                        <b className="text-2xl">Management Dokumentasi Kegiatan</b>
+                        <b className="text-2xl">Management Blog </b>
                         </div>
                     <div className="flex flex-row gap-3 ml-64">
                       <div className="rounded-xl flex justify-between items-center flex-grow">
                         <div className="">
-                          <b className="text-2xl">Tabel Data Dokumentasi</b>
+                          <b className="text-2xl">Tabel Data Blog</b>
                         </div>
                         <button
                           className="px-3 bg-blue-600 text-white rounded-full py-2 hover:bg-blue-700"
                           onClick={() => setShowModal(true)}>
-                          + Tambah Dokumentasi
+                          + Tambah Blog
                           </button>
                       </div>
                     </div>
@@ -162,25 +158,18 @@ const Dokumentasiadmin = () =>{
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th className="px-6 py-3 border-b w-64 text-left">Gambar</th>
-            <th className="px-6 py-3 border-b w-64 text-left">Nama</th>
-            <th className="px-6 py-3 border-b w-64 text-left">Kategori</th>
-            <th className="px-6 py-3 border-b w-64 text-left">Divisi</th>
-            <th className="px-6 py-3 border-b w-64 text-left">Status</th>
-            <th className="px-6 py-3 border-b w-64 text-left">Tanggal</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Judul</th>
+            <th className="px-6 py-3 border-b w-64 text-left">Deskripsi</th>
             <th className="px-6 py-3 border-b w-64 text-left">Aksi</th>
           </tr>
         </thead>
         <tbody>
           {dokumentasi.map((rowData) => (
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <td className="py-2 px-4 border-b">
-                <img src="file:///C:/Berkas%20Kuliah%20Aa/ProjectManpro/mahapala-backend/uploads/1703000926642-2021-08-18%20(8).png" alt={rowData.berkas} />
-              </td>
-              <td className="py-2 px-4 border-b">{rowData.nama}</td>
-              <td className="py-2 px-4 border-b">{rowData.kategori}</td>
-              <td className="py-2 px-4 border-b">{rowData.divisi}</td>
-              <td className="py-2 px-4 border-b">{rowData.status}</td>
-              <td className="py-2 px-4 border-b">{rowData.tanggal}</td>
+
+              <td className="py-2 px-4 border-b">{rowData.gambar}</td>
+              <td className="py-2 px-4 border-b">{rowData.judul}</td>
+              <td className="py-2 px-4 border-b">{rowData.deskripsi}</td>
               <td className="py-2 px-4 border-b">{
                 <div>
                 <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
@@ -198,61 +187,36 @@ const Dokumentasiadmin = () =>{
                               <div class="mt-2">
                                 <div className="flex justify-center items-center">
                                       <div className="flex flex-col w-[26.5rem]">
-                                        <label className="mb-2">Nama</label>
-                                        <input
-                                          type="text"
-                                          name="nama"
-                                          placeholder={dataid.nama}
-                                          value={ubahnama}
-                                          onChange={(e) => setubahNama(e.target.value)}
-                                          className="border p-2 mb-2"
-                                        />
+                                        <label className="mb-2">Judul</label>
+                                    <input
+                                      type="text"
+                                      name="nama"
+                                      placeholder={rowData.judul}
+                                      value={ubahnama}
+                                      onChange={(e) => setubahNama(e.target.value)}
+                                      className="border p-2 mb-2"
+                                    />
 
-                                        <label className="mb-2">divisi</label>
-                                        <input
-                                          type="number"
-                                          name="divisi"
-                                          placeholder={dataid.divisi}
-                                          value={ubahdivisi}
-                                          onChange={(e) => setubahDivisi(e.target.value)}
-                                          className="border p-2 mb-2"
-                                        />
-                                        <label className="mb-2">kategori</label>
-                                        <input 
-                                        type="number" 
-                                        name="kategori"
-                                        placeholder={dataid.kategori}
-                                        value={ubahkategori} 
-                                        onChange={(e) => setubahKategori(e.target.value)} 
-                                        className="border p-2 mb-2"
-                                        />
-                                        <label className="mb-2">status</label>
-                                        <input 
-                                        type="number" 
-                                        name="status" 
-                                        placeholder={dataid.status}
-                                        value={ubahsetatus} 
-                                        onChange={(e) => setubahSetatus(e.target.value)} 
-                                        className="border p-2 mb-2"
-                                        />
-                                        <label className="mb-2">Tanggal</label>
-                                        <input 
-                                        type="date" 
-                                        name="tanggal" 
-                                        placeholder={dataid.tanggal}
-                                        value={ubahtanggal} 
-                                        onChange={(e) => setubahTanggal(e.target.value)} 
-                                        className="border p-2 mb-2"
-                                        />
-                                        <label className="mb-2">berkas</label>
-                                        <input 
-                                        type="file" 
-                                        name="berkas" 
-                                        // value={berkas} 
-                                        accept="image/*, .pdf"
-                                        onChange={handleFileChange1}
-                                        className="border p-2 mb-2"
-                                        />
+                                    <label className="mb-2">Deskripsi</label>
+                                    <textarea 
+                                    type="text" 
+                                    name="kategori" 
+                                    placeholder={rowData.deskripsi}
+                                    value={ubahkategori} 
+                                    onChange={(e) => setubahKategori(e.target.value)} 
+                                    className="border p-2 mb-2 mt-1 p-2 block w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    rows="4" // Jumlah baris yang ditampilkan pada awalnya (opsional)
+                                    
+                                    />
+                                    <label className="mb-2">Gambar</label>
+                                    <input 
+                                    type="file" 
+                                    name="berkas" 
+                                    // value={berkas} 
+                                    accept="image/*, .jpg,.png"
+                                    onChange={handleFileChange1}
+                                    className="border p-2 mb-2"
+                                    />
 
                                         {/* Tombol Submit */}
                                         
@@ -265,7 +229,7 @@ const Dokumentasiadmin = () =>{
                           </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                          <button onClick={() => setId(dataid.id_dokumentasi)}
+                          <button onClick={() => setId(rowData.id_berita)}
                           type="submit"
                           class="inline-flex w-full justify-center rounded-md border 
                           border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm 
@@ -285,7 +249,7 @@ const Dokumentasiadmin = () =>{
               </div>
                 </>
       ) : null}
-              <button onClick={(e) => setHapusDokumen(rowData.id_dokumentasi)} className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</button>
+              <button onClick={(e) => setHapus1(rowData.id_berita)} className={`hover:bg-red-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-red-200 text-red-800" : ""}`}> Hapus</button>
                 </div>
 
               }</td>
@@ -311,7 +275,7 @@ const Dokumentasiadmin = () =>{
                           <div class="mt-2">
                             <div className="flex justify-center items-center">
                                   <div className="flex flex-col w-[26.5rem]">
-                                    <label className="mb-2">Nama</label>
+                                    <label className="mb-2">Judul</label>
                                     <input
                                       type="text"
                                       name="nama"
@@ -320,44 +284,22 @@ const Dokumentasiadmin = () =>{
                                       className="border p-2 mb-2"
                                     />
 
-                                    <label className="mb-2">divisi</label>
-                                    <input
-                                      type="number"
-                                      name="divisi"
-                                      value={divisi}
-                                      onChange={(e) => setDivisi(e.target.value)}
-                                      className="border p-2 mb-2"
-                                    />
-                                    <label className="mb-2">kategori</label>
-                                    <input 
-                                    type="number" 
+                                    <label className="mb-2">Deskripsi</label>
+                                    <textarea 
+                                    type="text" 
                                     name="kategori" 
                                     value={kategori} 
                                     onChange={(e) => setKategori(e.target.value)} 
-                                    className="border p-2 mb-2"
+                                    className="border p-2 mb-2 mt-1 p-2 block w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    rows="4" // Jumlah baris yang ditampilkan pada awalnya (opsional)
+                                    
                                     />
-                                    <label className="mb-2">status</label>
-                                    <input 
-                                    type="number" 
-                                    name="status" 
-                                    value={setatus} 
-                                    onChange={(e) => setSetatus(e.target.value)} 
-                                    className="border p-2 mb-2"
-                                    />
-                                    <label className="mb-2">Tanggal</label>
-                                    <input 
-                                    type="date" 
-                                    name="tanggal" 
-                                    value={tanggal} 
-                                    onChange={(e) => setTanggal(e.target.value)} 
-                                    className="border p-2 mb-2"
-                                    />
-                                    <label className="mb-2">berkas</label>
+                                    <label className="mb-2">Gambar</label>
                                     <input 
                                     type="file" 
                                     name="berkas" 
                                     // value={berkas} 
-                                    accept="image/*, .pdf"
+                                    accept="image/*, .jpg,.png"
                                     onChange={handleFileChange}
                                     className="border p-2 mb-2"
                                     />
@@ -399,4 +341,4 @@ const Dokumentasiadmin = () =>{
       
     );
   }
-  export default Dokumentasiadmin;
+  export default Blogadmin;
