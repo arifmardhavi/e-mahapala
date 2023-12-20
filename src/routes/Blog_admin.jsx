@@ -33,7 +33,7 @@ const Blogadmin = () =>{
     const setHapus1 = (e)=>{
     
         console.log(e)
-        fetch(`http://localhost:5000/berita/${e}`, {
+        fetch(`http://localhost:4000/berita/${e}`, {
           method: "DELETE",
         })
           .then((response) => response.json())
@@ -49,11 +49,11 @@ const Blogadmin = () =>{
       e.preventDefault();
       try{
         const formData = new FormData();
-          formData.append("judul", nama);
-          formData.append("deskripsi", kategori);
-          formData.append("gambar", berkas);
+          formData.append("judul", ubahnama);
+          formData.append("deskripsi", ubahkategori);
+          formData.append("gambar", ubahberkas);
 
-          fetch(`http://localhost:5000/berita/${id}`, {
+          fetch(`http://localhost:4000/berita/${id}`, {
             method: 'PATCH',
             body: formData,
           })
@@ -61,7 +61,7 @@ const Blogadmin = () =>{
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            alert('Data berhasil ditambahkan');
+            alert('Data berhasil diupdate');
             window.location.reload();
             // Lakukan tindakan lain jika diperlukan setelah pengunggahan berhasil
           })
@@ -92,7 +92,7 @@ const Blogadmin = () =>{
 
     useEffect(() => {
       
-      const url="http://localhost:5000/berita"
+      const url="http://localhost:4000/berita"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setDokumentasi(json.data));
@@ -108,7 +108,7 @@ const Blogadmin = () =>{
           formData.append("deskripsi", kategori);
           formData.append("gambar", berkas);
 
-          fetch('http://localhost:5000/berita', {
+          fetch('http://localhost:4000/berita', {
             method: 'POST',
             body: formData,
           })
@@ -191,7 +191,7 @@ const Blogadmin = () =>{
                                     <input
                                       type="text"
                                       name="nama"
-                                      placeholder={rowData.judul}
+                                      placeholder={dataid.judul}
                                       value={ubahnama}
                                       onChange={(e) => setubahNama(e.target.value)}
                                       className="border p-2 mb-2"
@@ -201,10 +201,10 @@ const Blogadmin = () =>{
                                     <textarea 
                                     type="text" 
                                     name="kategori" 
-                                    placeholder={rowData.deskripsi}
+                                    placeholder={dataid.deskripsi}
                                     value={ubahkategori} 
                                     onChange={(e) => setubahKategori(e.target.value)} 
-                                    className="border p-2 mb-2 mt-1 p-2 block w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    className="border p-2 mb-2 mt-1 block w-full rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
                                     rows="4" // Jumlah baris yang ditampilkan pada awalnya (opsional)
                                     
                                     />
@@ -290,7 +290,7 @@ const Blogadmin = () =>{
                                     name="kategori" 
                                     value={kategori} 
                                     onChange={(e) => setKategori(e.target.value)} 
-                                    className="border p-2 mb-2 mt-1 p-2 block w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
+                                    className="mb-2 mt-1 p-2 block w-full border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
                                     rows="4" // Jumlah baris yang ditampilkan pada awalnya (opsional)
                                     
                                     />

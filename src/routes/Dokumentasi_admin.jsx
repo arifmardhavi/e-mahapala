@@ -32,7 +32,7 @@ const Dokumentasiadmin = () =>{
 
     const setHapusDokumen = (e) => {
       console.log(e)
-      fetch(`http://localhost:5000/dokumentasi/${e}`, {
+      fetch(`http://localhost:4000/dokumentasi/${e}`, {
         method: "DELETE",
       })
       .then((response) => response.json())
@@ -54,7 +54,7 @@ const Dokumentasiadmin = () =>{
           formData.append("status", ubahsetatus);
           formData.append("tanggal", ubahtanggal);
 
-          fetch(`http://localhost:5000/dokumentasi/${id}`, {
+          fetch(`http://localhost:4000/dokumentasi/${id}`, {
             method: 'PATCH' ,
             body: formData,
           })
@@ -93,7 +93,7 @@ const Dokumentasiadmin = () =>{
 
     useEffect(() => {
       
-      const url="http://localhost:5000/dokumentasi"
+      const url="http://localhost:4000/dokumentasi"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setDokumentasi(json.data));
@@ -112,7 +112,7 @@ const Dokumentasiadmin = () =>{
           formData.append("status", setatus);
           formData.append("tanggal", tanggal);
 
-          fetch('http://localhost:5000/dokumentasi', {
+          fetch('http://localhost:4000/dokumentasi', {
             method: 'POST',
             body: formData,
           })

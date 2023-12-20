@@ -12,7 +12,7 @@ const Blog = () =>{
 
   useEffect(() => {
       
-    const url="http://localhost:5000/berita"
+    const url="http://localhost:4000/berita"
     fetch(url)
   .then((response) => response.json()) 
   .then((json) => setDokumentasi(json.data));
