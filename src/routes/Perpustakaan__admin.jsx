@@ -171,7 +171,7 @@ const Dokumentasiadmin = () =>{
       
     return (
       <div >
-      <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
+      <div className="flex flex-col gap-3 bg-gray-300  lg:p-12 lg:py-6">
       <Sidebar/>
       <div className="flex flex-row gap-10 ml-64">
                         
