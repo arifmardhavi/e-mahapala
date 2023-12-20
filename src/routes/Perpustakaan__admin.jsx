@@ -41,7 +41,7 @@ const Dokumentasiadmin = () =>{
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            alert(id);
+            // alert(id);
             alert('Data berhasil diupdate');
             window.location.reload();
             // Lakukan tindakan lain jika diperlukan setelah pengunggahan berhasil
