@@ -7,6 +7,17 @@ import BannerBlog from "../components/Banner/BannerBlog";
 
 const apiKey = process.env.REACT_APP_API_HOST;
 const Blog = () =>{
+
+  const [dokumentasi, setDokumentasi] = useState([]);
+
+  useEffect(() => {
+      
+    const url="http://localhost:5000/berita"
+    fetch(url)
+  .then((response) => response.json()) 
+  .then((json) => setDokumentasi(json.data));
+  
+     }, []);
   return (
   <div >
       <Navbar/>
@@ -17,22 +28,24 @@ const Blog = () =>{
    </div>
 
 <div className="grid grid-cols-2 md:grid-cols-1">
+
+{dokumentasi.map((rowData) => (
   <div className="card flex ml-36 mr-36 20 mt-20 mb-20 border-2">
         <img
-            src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwartapalaindonesia.com%2Fwp-content%2Fuploads%2F2021%2F04%2F1618299955594-1-960x640.jpg&f=1&nofb=1&ipt=04d5e7ab677519ce4f2584156fc7f0e94b612b0e07f0a8e7648b9a0b7471986c&ipo=images"
-            alt="Gambar dari Google"
+            src={rowData.gambar}
+            alt={rowData.gambar}
             className="rounded-lg w-96 "
           />
       <div className="judul ml-10">
         <h1 className="text-3xl capitalize text-gray-800 font-medium mb-4">
-          Kegiatan Mahapala
+          {rowData.judul}
         </h1>
         <p className="w-3/5 text-justify">
-          Mahapala adalah UKM di UPN "Veteran" Jawa Timur yang fokus pada pengembangan diri, kepemimpinan, dan pengabdian masyarakat. Mereka terlibat dalam kegiatan sosial dan pengembangan diri mahasiswa.
+          {rowData.deskripsi}
         </p>
       </div>
    </div>
-
+))}
 </div>
 
 

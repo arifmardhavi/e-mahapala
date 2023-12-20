@@ -5,25 +5,23 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import BannerDokumentasi from "../components/Banner/BannerDokumentasi";
 
-const apiKey = `https://pokeapi.co/media`;
+const apiKey = `http://localhost:5000/dokumentasi`;
 const Dokumentasi = () =>{
+  const [dokumentasi, setDokumentasi] = useState([]);
+
     const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const apiKey = process.env.REACT_APP_API_HOST;
+  const apiKey = `http://localhost:5000/dokumentasi`;
 
   useEffect(() => {
-    
-    fetch(apiKey)
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemonList(data.results);
-        setLoading(false);
-      })
-      .catch((error) => {  
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      });
-  }, []);
+      
+    setLoading(false);
+    const url="http://localhost:5000/dokumentasi"
+    fetch(url)
+  .then((response) => response.json()) 
+  .then((json) => setDokumentasi(json.data));
+  
+     }, []);
   return (
     <div >
       <Navbar/>
@@ -36,14 +34,14 @@ const Dokumentasi = () =>{
     <p>Loading...</p>
   ) : (
     <div className="grid grid-cols-1 md:grid-cols-4 mt-20 gap-4 mb-20 border">
-      {pokemonList.slice(0, 8).map((pokemon, index) => (
+      {dokumentasi.map((rowData) => (
   <div
-    key={index}
+    key={rowData}
     className="bg-gray-200 p-4 rounded-lg shadow-lg mx-12"
   >
     <img
-      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`}
-      alt={pokemon.name}
+      src={rowData.berkas}
+      alt={rowData.nama}
       className="mx-auto max-w-1xl h-40  mb-2"
       
     />

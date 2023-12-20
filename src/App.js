@@ -16,6 +16,7 @@ import PerpustakaanAdmin from './routes/Perpustakaan__admin.jsx';
 import Logistik from './routes/Logistik.jsx';
 import KontenArtikel from './routes/Konten__admin.jsx';
 import Kontak from './routes/Kontak';
+import Blogadmin from './routes/Blog_admin.jsx';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/dokumentasiadmin" element={<DokumentasiAdmin />} />
         <Route path="/perpustakaanadmin" element={<PerpustakaanAdmin />} />
         <Route path="/logistik" element={<Logistik />} />
+        <Route path="/blogadmin" element={<Blogadmin />} />
         <Route path="/kontenartikel">
           <Route index element={<KontenArtikel />} />
         </Route>
