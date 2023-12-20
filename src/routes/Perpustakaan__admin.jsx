@@ -31,7 +31,38 @@ const Dokumentasiadmin = () =>{
 
     const downloadFile = async (e) => {
       //const fileId = 9; // Gantilah dengan ID file yang sesuai
-      console.log(e)}
+      console.log(e.id_perpustakaan)
+      const apiUrl = `http://localhost:5000/perpustakaan/${e.id_perpustakaan}`;
+      
+      try {
+        const response = await fetch(apiUrl);
+        const blob = await response.blob();
+  
+        // Membuat objek URL dari blob
+        const url = window.URL.createObjectURL(new Blob([blob]));
+  
+        // Membuat elemen <a> untuk menginisiasi unduhan
+        const link = document.createElement('a');
+        link.href = url;
+  
+        // Mendapatkan nama file dari header respons atau menggantinya sesuai kebutuhan
+        const contentDisposition = response.headers.get('Content-Disposition');
+        const fileNameMatch = contentDisposition && contentDisposition.match(/filename="(.+)"/);
+        const fileName =  `${e.berkas}.pdf`;
+  
+        link.setAttribute('download', fileName);
+  
+        // Menambahkan elemen <a> ke dalam dokumen dan mengkliknya untuk memulai unduhan
+        document.body.appendChild(link);
+        link.click();
+  
+        // Menghapus elemen <a> setelah unduhan selesai
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error('Gagal mengunduh file:', error);
+      }
+    
+    }
 
 
     const setHapus1 = (e)=>{
@@ -159,11 +190,11 @@ const Dokumentasiadmin = () =>{
               <td className="py-2 px-4 border-b">{rowData.kategori}</td>
               <td className="py-2 px-4 border-b">
                 {rowData.berkas}
-                {/* <iframe src= {`../../../mahapala-backend/uploads/${rowData.berkas}`} title={`{rowData.berkas}`}></iframe> */}
+                {<iframe src= {rowData.berkas} title={`{rowData.berkas}`}></iframe> }
               </td>
               <td className="py-2 px-4 border-b">{
                 <div>
-                <button onClick={(e) => downloadFile(rowData.id_logistik)} className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</button>
+                <button onClick={(e) => downloadFile(rowData)} className={`hover:bg-sky-200 hover:text-sky-800 px-4 py-2 rounded-lg flex items-center "bg-sky-200 text-sky-800" : ""}`}> Lihat</button>
                 <button onClick={() =>  handleViewClick(rowData) } className={`hover:bg-green-200 hover:text-red-800 px-4 py-2 rounded-lg flex items-center "bg-green-200 text-green-800" : ""}`}> Edit</button>
                 {Modallihat ? (
         <>
