@@ -5,18 +5,18 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import BannerDokumentasi from "../components/Banner/BannerDokumentasi";
 
-const apiKey = `http://localhost:5000/dokumentasi`;
+const apiKey = `http://localhost:4000/dokumentasi`;
 const Dokumentasi = () =>{
   const [dokumentasi, setDokumentasi] = useState([]);
 
     const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const apiKey = `http://localhost:5000/dokumentasi`;
+  const apiKey = `http://localhost:4000/dokumentasi`;
 
   useEffect(() => {
       
     setLoading(false);
-    const url="http://localhost:5000/dokumentasi"
+    const url="http://localhost:4000/dokumentasi"
     fetch(url)
   .then((response) => response.json()) 
   .then((json) => setDokumentasi(json.data));

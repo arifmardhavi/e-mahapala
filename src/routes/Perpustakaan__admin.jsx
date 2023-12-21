@@ -34,14 +34,14 @@ const Dokumentasiadmin = () =>{
           formData.append("kategori", ubahkategori);
           formData.append("berkas", ubahberkas);
 
-          fetch(`http://localhost:5000/perpustakaan/${id}`, {
+          fetch(`http://localhost:4000/perpustakaan/${id}`, {
             method: 'PATCH' ,
             body: formData,
           })
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            alert(id);
+            // alert(id);
             alert('Data berhasil diupdate');
             window.location.reload();
             // Lakukan tindakan lain jika diperlukan setelah pengunggahan berhasil
@@ -86,7 +86,7 @@ const Dokumentasiadmin = () =>{
     const setHapus1 = (e)=>{
 
       console.log(e)
-      fetch(`http://localhost:5000/perpustakaan/${e}`, {
+      fetch(`http://localhost:4000/perpustakaan/${e}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -103,7 +103,7 @@ const Dokumentasiadmin = () =>{
 
     useEffect(() => {
       
-      const url="http://localhost:5000/perpustakaan"
+      const url="http://localhost:4000/perpustakaan"
       fetch(url)
     .then((response) => response.json()) 
     .then((json) => setPerpustakaan(json.data));
@@ -120,7 +120,7 @@ const Dokumentasiadmin = () =>{
           formData.append("kategori", kategori);
           formData.append("berkas", berkas);
     
-          fetch('http://localhost:5000/perpustakaan', {
+          fetch('http://localhost:4000/perpustakaan', {
             method: 'POST',
             body: formData,
           })
@@ -147,7 +147,7 @@ const Dokumentasiadmin = () =>{
       
     return (
       <div >
-      <div className="flex flex-col gap-3 h-screen w-screen bg-gray-300  lg:p-12 lg:py-6 overflow-y-hidden">
+      <div className="flex flex-col gap-3 bg-gray-300  lg:p-12 lg:py-6">
       <Sidebar/>
       <div className="flex flex-row gap-10 ml-64">
                         
