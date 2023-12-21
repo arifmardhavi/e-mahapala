@@ -72,37 +72,13 @@ const Dokumentasiadmin = () =>{
 
 
     const downloadFile = async (e) => {
-      //const fileId = 9; // Gantilah dengan ID file yang sesuai
-      console.log(e.id_perpustakaan)
-      const apiUrl = `http://localhost:5000/perpustakaan/${e.id_perpustakaan}`;
-      
-      try {
-        const response = await fetch(apiUrl);
-        const blob = await response.blob();
-  
-        // Membuat objek URL dari blob
-        const url = window.URL.createObjectURL(new Blob([blob]));
-  
-        // Membuat elemen <a> untuk menginisiasi unduhan
-        const link = document.createElement('a');
-        link.href = url;
-  
-        // Mendapatkan nama file dari header respons atau menggantinya sesuai kebutuhan
-        const contentDisposition = response.headers.get('Content-Disposition');
-        const fileNameMatch = contentDisposition && contentDisposition.match(/filename="(.+)"/);
-        const fileName =  `${e.berkas}.pdf`;
-  
-        link.setAttribute('download', fileName);
-  
-        // Menambahkan elemen <a> ke dalam dokumen dan mengkliknya untuk memulai unduhan
-        document.body.appendChild(link);
-        link.click();
-  
-        // Menghapus elemen <a> setelah unduhan selesai
-        document.body.removeChild(link);
-      } catch (error) {
-        console.error('Gagal mengunduh file:', error);
-      }
+      const fileUrl = e.berkas
+      const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'your-file-name.pdf'; // Nama file yang akan diunduh
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     
     }
 
@@ -230,7 +206,7 @@ const Dokumentasiadmin = () =>{
               <td className="py-2 px-4 border-b">{rowData.divisi}</td>
               <td className="py-2 px-4 border-b">{rowData.kategori}</td>
               <td className="py-2 px-4 border-b">
-                {rowData.berkas}
+                
                 {<iframe src= {rowData.berkas} title={`{rowData.berkas}`}></iframe> }
               </td>
               <td className="py-2 px-4 border-b">{
@@ -377,7 +353,7 @@ const Dokumentasiadmin = () =>{
                                                   type="file" 
                                                   name="berkas" 
                                                   //value={berkas} 
-                                                  accept=".pdf"
+                                                  accept=""
                                                   onChange={handleFileChange}
 
                                                   className="border p-2 mb-2"

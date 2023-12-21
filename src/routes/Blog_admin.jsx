@@ -167,7 +167,7 @@ const Blogadmin = () =>{
           {dokumentasi.map((rowData) => (
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
 
-              <td className="py-2 px-4 border-b">{rowData.gambar}</td>
+              <td className="py-2 px-4 border-b"><img src={rowData.gambar} alt={rowData.berkas} /></td>
               <td className="py-2 px-4 border-b">{rowData.judul}</td>
               <td className="py-2 px-4 border-b">{rowData.deskripsi}</td>
               <td className="py-2 px-4 border-b">{

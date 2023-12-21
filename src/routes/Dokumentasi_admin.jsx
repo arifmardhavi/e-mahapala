@@ -174,7 +174,7 @@ const Dokumentasiadmin = () =>{
           {dokumentasi.map((rowData) => (
             <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <td className="py-2 px-4 border-b">
-                <img src="file:///C:/Berkas%20Kuliah%20Aa/ProjectManpro/mahapala-backend/uploads/1703000926642-2021-08-18%20(8).png" alt={rowData.berkas} />
+                <img src={rowData.berkas} alt={rowData.berkas} />
               </td>
               <td className="py-2 px-4 border-b">{rowData.nama}</td>
               <td className="py-2 px-4 border-b">{rowData.kategori}</td>
